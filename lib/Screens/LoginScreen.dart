@@ -8,53 +8,77 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Column(
-        children: [
-          Header(
-            label: 'Login',
-            press: () {
-              Navigator.pop(context);
-            },
-          ),
-          Expanded(
-            child: Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
+      body: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: () {
+          FocusScope.of(context).requestFocus(new FocusNode());
+        },
+        child: Container(
+          child: Column(
+            children: [
+              Header(
+                label: 'Login',
+                press: () {
+                  Navigator.pop(context);
+                },
+              ),
+              Expanded(
+                child: Container(
+                  height: size.height,
+                  child: ListView(
                     children: [
-                      Column(
-                        children: [
-                          Image.asset(
-                            'assets/images/Logo.png',
-                            width: size.width * 0.25,
-                            height: size.height * 0.25,
-                            alignment: Alignment.topCenter,
-                          ),
-                          // TextFormField(
-                          //   decoration: InputDecoration(
-                          //     labelText: 'Username',
-                          //     hintText: 'Nyansa',
-                          //     icon: Icon(
-                          //       Icons.face_outlined,
-                          //     ),
-                          //     border: OutlineInputBorder(
-                          //       borderRadius:
-                          //           BorderRadius.all(Radius.circular(50)),
-                          //     ),
-                          //   ),
-                          // ),
-                        ],
+                      Container(
+                        margin: EdgeInsets.symmetric(
+                          horizontal: 15,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              'assets/images/Logo.png',
+                              width: size.width * 0.5,
+                              height: size.height * 0.5,
+                              alignment: Alignment.center,
+                            ),
+                            TextFormField(
+                              decoration: InputDecoration(
+                                icon: Icon(Icons.email),
+                                labelText: 'Email',
+                                hintText: 'nyansa@nyansa.com',
+                              ),
+                            ),
+                            TextFormField(
+                              decoration: InputDecoration(
+                                icon: Icon(Icons.lock),
+                                labelText: 'Password',
+                                hintText: 'Password',
+                              ),
+                            ),
+                            Container(
+                              padding: EdgeInsets.only(top: 25.0),
+                              child: RoundedButton(
+                                text: 'Login',
+                                fontSize: 19,
+                                primary: Colors.cyan,
+                                press: () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    '/NavBar',
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
-                ],
-              ),
-            ),
+                ),
+              )
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

@@ -7,6 +7,11 @@ import 'Screens/CreateAccount/RestrictionScreen.dart';
 import 'Screens/CreateAccount/TimerScreen.dart';
 import 'Screens/CreateAccount/FinalCreateScreen.dart';
 import 'Screens/LoginScreen.dart';
+import 'Screens/BottomTab.dart';
+import 'Screens/HomeScreen.dart';
+import 'Screens/FavoritesScreen.dart';
+import 'Screens/SearchScreen.dart';
+import 'Screens/ProfileScreen.dart';
 
 void main() => runApp(MyApp());
 
@@ -17,6 +22,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Nyansa App',
       theme: ThemeData(
+        scaffoldBackgroundColor: Colors.grey[200],
         primaryColor: Colors.cyan,
       ),
       home: WelcomeScreen(),
@@ -27,6 +33,11 @@ class MyApp extends StatelessWidget {
         '/Restriction': (context) => RestrictionScreen(),
         '/Timer': (context) => TimerScreen(),
         '/Final': (context) => FinalCreateScreen(),
+        '/NavBar': (context) => BottomTab(),
+        '/Home': (context) => HomeScreen(),
+        '/Favorites': (context) => FavoritesScreen(),
+        '/Search': (context) => SearchScreen(),
+        '/Profile': (context) => ProfileScreen(),
       },
     );
   }
