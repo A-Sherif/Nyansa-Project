@@ -1,43 +1,41 @@
 import 'package:flutter/material.dart';
 
-class RoundedButton extends StatelessWidget {
-  final String text;
-  final Color primary, onPrimary;
-  final Function press;
+class CategoryButton extends StatelessWidget {
+  final String label;
+  final Color background;
   final double fontSize;
+  final Function press;
 
-  const RoundedButton({
+  const CategoryButton({
     Key key,
-    this.text,
-    this.primary,
-    this.onPrimary,
-    this.press,
+    this.label,
+    this.background,
     this.fontSize,
+    this.press,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Container(
-      height: 60,
-      width: 300,
+      margin: EdgeInsets.only(right: 5),
       child: ElevatedButton(
+        child: Text(label),
         onPressed: press,
-        child: Text(text),
         style: ElevatedButton.styleFrom(
-          primary: primary,
-          onPrimary: onPrimary,
+          primary: background,
+          onPrimary: Colors.white,
           textStyle: TextStyle(
             fontSize: fontSize,
             fontWeight: FontWeight.bold,
           ),
           padding: EdgeInsets.symmetric(
-            horizontal: 15,
-            vertical: 15,
+            horizontal: 5,
+            vertical: 5,
           ),
+          shadowColor: Colors.transparent,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
-              Radius.circular(50.0),
+              Radius.circular(10.0),
             ),
           ),
         ),
