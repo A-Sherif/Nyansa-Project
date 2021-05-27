@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../globalComponents/Header.dart';
+import '../components/Header.dart';
 import 'components/Timer.dart';
 
 class TimerScreen extends StatelessWidget {

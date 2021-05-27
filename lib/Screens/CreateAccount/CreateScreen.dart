@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'components/FormInput.dart';
-import '../globalComponents/Header.dart';
-import '../globalComponents/roundedButton.dart';
+import '../components/Header.dart';
+import '../components/roundedButton.dart';
+import '../components/PasswordFormField.dart';
 import 'components/termsText.dart';
 
 class CreateScreen extends StatelessWidget {
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -30,44 +32,64 @@ class CreateScreen extends StatelessWidget {
                   ),
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: 20),
-                    child: Column(
-                      children: [
-                        FormInput(
-                          icon: Icon(Icons.face),
-                          labelText: 'Child\'s Name',
-                          hintText: 'Nyansa',
-                          autofocus: true,
-                          hide: false,
-                        ),
-                        FormInput(
-                          icon: Icon(Icons.email),
-                          labelText: 'Email',
-                          hintText: 'nyansa@nyansa.com',
-                          autofocus: true,
-                          hide: false,
-                        ),
-                        FormInput(
-                          icon: Icon(Icons.lock),
-                          suffixIcon: Icon(Icons.visibility),
-                          labelText: 'Password',
-                          hintText: 'password',
-                          autofocus: true,
-                          hide: true,
-                        ),
-                        TermsAndConditionsText(),
-                        RoundedButton(
-                          text: 'Continue',
-                          primary: Colors.cyan,
-                          onPrimary: Colors.white,
-                          fontSize: 18,
-                          press: () {
-                            Navigator.pushNamed(
-                              context,
-                              '/Proficiency',
-                            );
-                          },
-                        ),
-                      ],
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        children: [
+                          FormInput(
+                            icon: Icon(Icons.face),
+                            labelText: 'Child\'s Name',
+                            hintText: 'Nyansa',
+                            autofocus: true,
+                            hide: false,
+                            validate: (value) {
+                              if (value.isEmpty) {
+                                return 'Please enter your child\'s name';
+                              } else if (value.length <= 2) {
+                                return 'Child\'s name cannot be less than 2 letters';
+                              }
+                            },
+                          ),
+                          FormInput(
+                            icon: Icon(Icons.email),
+                            labelText: 'Email',
+                            hintText: 'nyansa@nyansa.com',
+                            autofocus: true,
+                            hide: false,
+                            validate: (value) {
+                              if (value.isEmpty) {
+                                return 'Please enter an email';
+                              } else if (value.length <= 6) {
+                                return 'Enter a valid Email';
+                              }
+                            },
+                          ),
+                          PasswordFormField(
+                            validate: (value) {
+                              if (value.isEmpty) {
+                                return 'Password cannot be empty';
+                              } else if (value.length <= 5) {
+                                return 'Password cannot be less than 6 letters';
+                              }
+                            },
+                          ),
+                          TermsAndConditionsText(),
+                          RoundedButton(
+                            text: 'Continue',
+                            primary: Colors.cyan,
+                            onPrimary: Colors.white,
+                            fontSize: 18,
+                            press: () {
+                              _formKey.currentState.validate()
+                                  ? Navigator.pushNamed(
+                                      context,
+                                      '/Proficiency',
+                                    )
+                                  : null;
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],

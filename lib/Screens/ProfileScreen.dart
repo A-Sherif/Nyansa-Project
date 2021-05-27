@@ -61,6 +61,11 @@ class ProfileScreen extends StatelessWidget {
                           ),
                         ],
                       ),
+                      Text('Earn points by reading',
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w300,
+                          ))
                     ],
                   ),
                 ),
