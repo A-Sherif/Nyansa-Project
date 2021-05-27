@@ -46,5 +46,16 @@ class Categories extends StatelessWidget {
         },
       ),
     );
+    // Container(
+    //   height: 50,
+    //   width: 130,
+    //   margin: EdgeInsets.only(right: 10),
+    //   child: CategoryButton(
+    //     label: 'More',
+    //     background: Colors.cyan,
+    //     fontSize: 16,
+    //     press: () {},
+    //   ),
+    // );
   }
 }

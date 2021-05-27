@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class FormInput extends StatelessWidget {
+class FormInput extends StatefulWidget {
   final String labelText;
   final Icon icon, suffixIcon;
   final String hintText;
@@ -20,17 +20,22 @@ class FormInput extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  _FormInputState createState() => _FormInputState();
+}
+
+class _FormInputState extends State<FormInput> {
+  @override
   Widget build(BuildContext context) {
     return TextFormField(
       decoration: InputDecoration(
-        icon: icon,
-        labelText: labelText,
-        hintText: hintText,
-        suffixIcon: suffixIcon,
+        icon: widget.icon,
+        labelText: widget.labelText,
+        hintText: widget.hintText,
+        suffixIcon: widget.suffixIcon,
       ),
-      autofocus: autofocus,
-      validator: validate,
-      obscureText: hide,
+      autofocus: widget.autofocus,
+      validator: widget.validate,
+      obscureText: widget.hide,
     );
   }
 }

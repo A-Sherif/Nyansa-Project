@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../globalComponents/Header.dart';
+import '../components/Header.dart';
 import 'components/ProficiencyList.dart';
 
 class ProficiencyScreen extends StatelessWidget {
