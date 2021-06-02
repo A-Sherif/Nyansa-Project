@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../globalComponents/roundedButton.dart';
+import '../../components/roundedButton.dart';
 
 class FinalizeAssets extends StatelessWidget {
   const FinalizeAssets({

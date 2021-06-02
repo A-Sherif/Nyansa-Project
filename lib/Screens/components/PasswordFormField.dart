@@ -20,6 +20,7 @@ class _PasswordFormFieldState extends State<PasswordFormField> {
     });
   }
 
+<<<<<<< HEAD
   // String passwordStruct(String value) {
   //   String pattern =
   //       r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\/$&*=-]).{6,}$';
@@ -32,6 +33,8 @@ class _PasswordFormFieldState extends State<PasswordFormField> {
   //   return null;
   // }
 
+=======
+>>>>>>> c8e7fd060f19ca8158ccd4ae4df735a9ea144a78
   @override
   Widget build(BuildContext context) {
     return Container(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../globalComponents/Header.dart';
+import '../components/Header.dart';
 import 'components/FormInput.dart';
 import 'components/RestrictionItems.dart';
 import '../components/SearchBox.dart';
