@@ -33,7 +33,7 @@ class TimerScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SetTimer(),
+                        Timer(),
                       ],
                     ),
                     Padding(

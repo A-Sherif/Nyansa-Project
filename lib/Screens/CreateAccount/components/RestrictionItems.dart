@@ -13,61 +13,89 @@ class _RestrictionItemsState extends State<RestrictionItems> {
   final List<String> restrictions = <String>[
     'LGBT+',
     'Islam',
-    'Christian',
+    'Christianity',
     'War',
-    'Islam',
-    'Christian',
-    'War',
-    'Islam',
-    'Christian',
-    'War',
-    'Islam',
-    'Christian',
-    'War'
+    'Islam2',
+    'Christianity2',
+    'War2',
+    'Islam3',
+    'Christianity3',
+    'War4',
+    'Islam4',
+    'Christianity4',
+    'War4'
   ];
 
-  bool selected = false;
-  void selectedIndex() {
+  List<String> selectedRestriction = <String>[];
+
+  ScrollController _scrollController = ScrollController();
+
+  bool isCheck = false;
+  void _selected(bool value, int index) {
     setState(() {
-      selected = !selected;
+      if (!selectedRestriction.contains(restrictions[index])) {
+        selectedRestriction.add(restrictions[index]);
+        isCheck = value;
+      } else if (selectedRestriction.contains(restrictions[index])) {
+        selectedRestriction.remove(restrictions[index]);
+        isCheck = value;
+      }
     });
   }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Expanded(
-      child: Container(
-        padding: EdgeInsets.fromLTRB(
-          size.width * 0.1,
-          0,
-          size.width * 0.1,
-          size.width * 0.2,
+    return Column(
+      children: [
+        ElevatedButton(
+          child: Text('Reset'),
+          style: ElevatedButton.styleFrom(
+            primary: Colors.cyan,
+            onPrimary: Colors.white,
+          ),
+          onPressed: () {
+            setState(() {
+              selectedRestriction.clear();
+            });
+          },
         ),
-        child: ListView.separated(
-            itemBuilder: (BuildContext context, int index) {
-              return ClipRRect(
-                borderRadius: BorderRadius.circular(
-                  50,
-                ),
-                child: ListTile(
-                  title: Text('${restrictions[index]}',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: selected ? Colors.black : Colors.white,
-                      )),
-                  selected: false,
-                  tileColor: selected ? Colors.white : Colors.cyan,
-                  onTap: () {
-                    selectedIndex();
-                  },
-                ),
-              );
-            },
-            separatorBuilder: (BuildContext context, int index) =>
-                const Divider(),
-            itemCount: restrictions.length),
-      ),
+        Container(
+          height: size.height * 0.7,
+          padding: EdgeInsets.fromLTRB(
+            15,
+            0,
+            15,
+            size.width * 0.2,
+          ),
+          child: Scrollbar(
+            isAlwaysShown: true,
+            interactive: true,
+            controller: _scrollController,
+            child: ListView.builder(
+                controller: _scrollController,
+                physics: BouncingScrollPhysics(),
+                itemCount: restrictions.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return CheckboxListTile(
+                      value: selectedRestriction.contains(restrictions[index]),
+                      title: Text(
+                        '${restrictions[index]}',
+                        style: selectedRestriction.contains(restrictions[index])
+                            ? TextStyle(
+                                decoration: TextDecoration.lineThrough,
+                                decorationThickness: 2.5,
+                              )
+                            : null,
+                      ),
+                      activeColor: Colors.red,
+                      onChanged: (value) {
+                        _selected(value, index);
+                      });
+                }),
+          ),
+        ),
+      ],
     );
   }
 }

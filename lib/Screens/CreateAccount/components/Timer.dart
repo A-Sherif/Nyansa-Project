@@ -1,72 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:numberpicker/numberpicker.dart';
 
-class SetTimer extends StatefulWidget {
-  const SetTimer({
-    Key key,
-  }) : super(key: key);
-
+class Timer extends StatefulWidget {
   @override
-  _SetTimerState createState() => _SetTimerState();
+  _TimerState createState() => _TimerState();
 }
 
-class _SetTimerState extends State<SetTimer> {
-  double _counter = 40.00;
-
-  void _increaseTime() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  void _reduceTime() {
-    setState(() {
-      if (_counter > 0) {
-        _counter--;
-      } else {
-        _counter = 0;
-      }
-    });
-  }
-
+class _TimerState extends State<Timer> {
+  double _currentDoubleValue = 0.40;
   @override
   Widget build(BuildContext context) {
     return Container(
-        child: Column(children: [
-      Container(
-        child: GestureDetector(
-          child: Icon(
-            Icons.keyboard_arrow_up,
-            size: 60,
+      child: Column(
+        children: [
+          DecimalNumberPicker(
+            value: _currentDoubleValue,
+            minValue: 0,
+            maxValue: 24,
+            decimalPlaces: 2,
+            onChanged: (value) => setState(() => _currentDoubleValue = value),
           ),
-          onTap: () {
-            _increaseTime();
-          },
-        ),
+          Text('Current Time: $_currentDoubleValue'),
+        ],
       ),
-      Container(
-        child: Text(
-          '$_counter',
-          style: TextStyle(
-            fontSize: 32,
-          ),
-        ),
-      ),
-      Container(
-        child: GestureDetector(
-          child: Icon(
-            Icons.keyboard_arrow_down,
-            size: 60,
-          ),
-          onTap: () {
-            _reduceTime();
-          },
-          onLongPress: () {
-            setState(() {
-              _counter = 0;
-            });
-          },
-        ),
-      ),
-    ]));
+    );
   }
 }

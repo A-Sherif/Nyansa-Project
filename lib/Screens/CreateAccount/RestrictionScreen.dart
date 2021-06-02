@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../globalComponents/Header.dart';
 import 'components/FormInput.dart';
 import 'components/RestrictionItems.dart';
+import '../components/SearchBox.dart';
 
 class RestrictionScreen extends StatelessWidget {
   @override
@@ -22,29 +23,21 @@ class RestrictionScreen extends StatelessWidget {
           backgroundColor: Colors.cyan,
           label: Text('Continue'),
         ),
-        body: Column(
-          children: [
-            Header(
-              label: 'Add reading restriction',
-              press: () {
-                Navigator.pop(context);
-              },
+        body: SafeArea(
+          child: ListView(physics: NeverScrollableScrollPhysics(), children: [
+            Column(
+              children: [
+                Header(
+                  label: 'Add reading restriction',
+                  press: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                SearchBox(),
+                RestrictionItems(),
+              ],
             ),
-            Padding(
-              padding: EdgeInsets.only(
-                left: 20,
-                right: 20,
-                bottom: 10,
-              ),
-              child: FormInput(
-                labelText: 'Search',
-                icon: Icon(Icons.search),
-                hide: false,
-                autofocus: false,
-              ),
-            ),
-            RestrictionItems(),
-          ],
+          ]),
         ),
       ),
     );
