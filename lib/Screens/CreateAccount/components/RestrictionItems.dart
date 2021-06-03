@@ -15,15 +15,10 @@ class _RestrictionItemsState extends State<RestrictionItems> {
     'Islam',
     'Christianity',
     'War',
-    'Islam2',
-    'Christianity2',
-    'War2',
-    'Islam3',
-    'Christianity3',
-    'War4',
-    'Islam4',
-    'Christianity4',
-    'War4'
+    'Religion',
+    'Beginner Books',
+    'Intermediate Books',
+    'Advanced Books',
   ];
 
   List<String> selectedRestriction = <String>[];

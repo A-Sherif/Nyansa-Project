@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'Screens/WelcomeScreen.dart';
 import 'Screens/CreateAccount/CreateScreen.dart';
 import 'Screens/CreateAccount/ProficiencyScreen.dart';
+import 'Screens/CreateAccount/ProficiencyExp.dart';
 import 'Screens/CreateAccount/RestrictionScreen.dart';
 import 'Screens/CreateAccount/TimerScreen.dart';
 import 'Screens/CreateAccount/FinalCreateScreen.dart';
@@ -12,6 +13,7 @@ import 'Screens/HomeScreen.dart';
 import 'Screens/FavoritesScreen.dart';
 import 'Screens/SearchScreen.dart';
 import 'Screens/ProfileScreen.dart';
+import 'Screens/BookInfo.dart';
 
 void main() => runApp(MyApp());
 
@@ -30,6 +32,7 @@ class MyApp extends StatelessWidget {
         '/Login': (context) => LoginScreen(),
         '/Create': (context) => CreateScreen(),
         '/Proficiency': (context) => ProficiencyScreen(),
+        '/Explanation': (context) => ProficiencyExplanation(),
         '/Restriction': (context) => RestrictionScreen(),
         '/Timer': (context) => TimerScreen(),
         '/Final': (context) => FinalCreateScreen(),
@@ -38,6 +41,7 @@ class MyApp extends StatelessWidget {
         '/Favorites': (context) => FavoritesScreen(),
         '/Search': (context) => SearchScreen(),
         '/Profile': (context) => ProfileScreen(),
+        '/BookInfo': (context) => BookInfo(),
       },
     );
   }

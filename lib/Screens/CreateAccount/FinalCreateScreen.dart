@@ -11,9 +11,6 @@ class FinalCreateScreen extends StatelessWidget {
       child: Column(children: [
         Header(
           label: 'Finalize',
-          press: () {
-            Navigator.pop(context);
-          },
         ),
         FinalizeAssets(),
       ]),

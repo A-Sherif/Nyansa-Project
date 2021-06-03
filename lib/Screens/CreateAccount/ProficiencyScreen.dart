@@ -8,24 +8,21 @@ class ProficiencyScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Scaffold(
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          Navigator.pushNamed(context, '/Restriction');
-        },
-        backgroundColor: Colors.cyan,
-        label: Text('Continue'),
-      ),
-      body: Container(
-          height: size.height,
-          child: SingleChildScrollView(
+    return SafeArea(
+      child: Scaffold(
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {
+            Navigator.pushNamed(context, '/Restriction');
+          },
+          backgroundColor: Colors.cyan,
+          label: Text('Continue'),
+        ),
+        body: Container(
+            height: size.height,
             child: Column(
               children: [
                 Header(
                   label: 'Set child\'s reading proficiency',
-                  press: () {
-                    Navigator.pop(context);
-                  },
                 ),
                 Container(
                   child: Column(
@@ -58,7 +55,9 @@ class ProficiencyScreen extends StatelessWidget {
                           vertical: 10,
                         ),
                         child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/Explanation');
+                            },
                             child: Column(
                               children: [
                                 Icon(Icons.help_outline),
@@ -82,8 +81,8 @@ class ProficiencyScreen extends StatelessWidget {
                   ),
                 ),
               ],
-            ),
-          )),
+            )),
+      ),
     );
   }
 }

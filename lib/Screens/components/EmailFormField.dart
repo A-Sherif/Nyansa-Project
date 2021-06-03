@@ -7,7 +7,7 @@ class EmailFormField extends StatefulWidget {
 }
 
 class _EmailFormFieldState extends State<EmailFormField> {
-  bool _isValid;
+  bool _isValid = false;
   @override
   Widget build(BuildContext context) {
     return TextFormField(

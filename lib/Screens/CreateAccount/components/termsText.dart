@@ -13,8 +13,9 @@ class TermsAndConditionsText extends StatelessWidget {
         vertical: 20,
       ),
       child: RichText(
-          textAlign: TextAlign.center,
-          text: TextSpan(children: [
+        textAlign: TextAlign.center,
+        text: TextSpan(
+          children: [
             TextSpan(
                 text: 'By tapping continue you accept our',
                 style: TextStyle(color: Colors.black)),
@@ -29,7 +30,9 @@ class TermsAndConditionsText extends StatelessWidget {
                 style: TextStyle(color: Colors.blue),
                 recognizer: TapGestureRecognizer()
                   ..onTap = () => print('privacy policy')),
-          ])),
+          ],
+        ),
+      ),
     );
   }
 }

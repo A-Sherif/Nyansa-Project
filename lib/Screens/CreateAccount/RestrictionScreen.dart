@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 
 import '../components/Header.dart';
-import 'components/FormInput.dart';
 import 'components/RestrictionItems.dart';
 import '../components/SearchBox.dart';
 
 class RestrictionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () {
@@ -29,9 +27,6 @@ class RestrictionScreen extends StatelessWidget {
               children: [
                 Header(
                   label: 'Add reading restriction',
-                  press: () {
-                    Navigator.pop(context);
-                  },
                 ),
                 SearchBox(),
                 RestrictionItems(),
