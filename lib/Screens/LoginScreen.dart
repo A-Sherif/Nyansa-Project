@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'components/Header.dart';
 import 'components/roundedButton.dart';
+import 'components/EmailFormField.dart';
 import 'components/PasswordFormField.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -9,97 +10,85 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Scaffold(
-      body: GestureDetector(
-        behavior: HitTestBehavior.opaque,
-        onTap: () {
-          FocusScope.of(context).requestFocus(new FocusNode());
-        },
-        child: Container(
-          child: Column(
-            children: [
-              Header(
-                label: 'Login',
-                press: () {
-                  Navigator.pop(context);
-                },
-              ),
-              Expanded(
-                child: Container(
-                  height: size.height,
-                  child: ListView(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.symmetric(
-                          horizontal: 20,
-                        ),
-                        padding: EdgeInsets.only(bottom: 10),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset(
-                              'assets/images/Logo.png',
-                              width: size.height / 3,
-                              height: size.height / 3,
-                              alignment: Alignment.center,
-                            ),
-                            Container(
-                              child: Form(
-                                key: _formKey,
-                                child: Column(
-                                  children: [
-                                    TextFormField(
-                                      decoration: InputDecoration(
-                                        icon: Icon(Icons.email),
-                                        labelText: 'Email',
-                                        hintText: 'nyansa@nyansa.com',
+    return SafeArea(
+      child: Scaffold(
+        body: GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: () {
+            FocusScope.of(context).requestFocus(new FocusNode());
+          },
+          child: Container(
+            child: Column(
+              children: [
+                Header(
+                  label: 'Login',
+                ),
+                Expanded(
+                  child: Container(
+                    height: size.height,
+                    child: ListView(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.symmetric(
+                            horizontal: 20,
+                          ),
+                          padding: EdgeInsets.only(bottom: 10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                'assets/images/Logo.png',
+                                width: size.height / 3,
+                                height: size.height / 3,
+                                alignment: Alignment.center,
+                              ),
+                              Container(
+                                child: Form(
+                                  key: _formKey,
+                                  child: Column(
+                                    children: [
+                                      EmailFormField(),
+                                      PasswordFormField(
+                                        validate: (value) {
+                                          if (value.isEmpty) {
+                                            return 'Please enter a password';
+                                          } else if (value.length < 6) {
+                                            return 'Password cannot be less than 6 letters';
+                                          }
+                                        },
                                       ),
-                                      validator: (value) {
-                                        if (value.isEmpty) {
-                                          return 'Email cannot be empty';
-                                        } else if (value.length <= 6) {
-                                          return 'Enter a valid Email';
-                                        }
-                                      },
-                                    ),
-                                    PasswordFormField(
-                                      validate: (value) {
-                                        if (value.isEmpty) {
-                                          return 'Password cannot be empty';
-                                        } else if (value.length <= 5) {
-                                          return 'Password cannot be less than 6 characters';
-                                        }
-                                      },
-                                    ),
-                                  ],
+                                      Container(
+                                        padding: EdgeInsets.only(top: 25.0),
+                                        child: RoundedButton(
+                                          text: 'Login',
+                                          fontSize: 18,
+                                          primary: Colors.cyan,
+                                          onPrimary: Colors.white,
+                                          press: () {
+                                            if (_formKey.currentState
+                                                .validate()) {
+                                              Navigator.pushNamed(
+                                                context,
+                                                '/NavBar',
+                                              );
+                                            }
+                                          },
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.only(top: 25.0),
-                              child: RoundedButton(
-                                text: 'Login',
-                                fontSize: 19,
-                                primary: Colors.cyan,
-                                press: () {
-                                  _formKey.currentState.validate()
-                                      ? Navigator.pushNamed(
-                                          context,
-                                          '/NavBar',
-                                        )
-                                      : null;
-                                },
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
         ),
       ),

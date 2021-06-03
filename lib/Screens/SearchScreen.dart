@@ -7,7 +7,6 @@ import 'components/SearchCategories.dart';
 class SearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: GestureDetector(
@@ -19,9 +18,6 @@ class SearchScreen extends StatelessWidget {
           children: [
             Header(
               label: 'Search',
-              press: () {
-                Navigator.pushNamed(context, '/NavBar');
-              },
             ),
             SearchBox(),
             SearchCategories(),

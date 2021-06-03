@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 
 class Header extends StatelessWidget {
   final String label;
-  final Function press;
 
   const Header({
     Key key,
     this.label,
-    this.press,
   }) : super(key: key);
 
   @override
@@ -20,7 +18,9 @@ class Header extends StatelessWidget {
               child: Row(
                 children: [
                   TextButton.icon(
-                    onPressed: press,
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                     icon: Icon(
                       Icons.arrow_back,
                       color: Colors.black,

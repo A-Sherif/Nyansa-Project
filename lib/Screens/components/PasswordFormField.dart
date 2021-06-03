@@ -20,21 +20,6 @@ class _PasswordFormFieldState extends State<PasswordFormField> {
     });
   }
 
-<<<<<<< HEAD
-  // String passwordStruct(String value) {
-  //   String pattern =
-  //       r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\/$&*=-]).{6,}$';
-  //   RegExp regex = new RegExp(pattern);
-  //   if (value.isEmpty) {
-  //     return 'Enter a password';
-  //   } else if (!regex.hasMatch(value)) {
-  //     return 'Password should contain at least one uppercase letter and symbol';
-  //   }
-  //   return null;
-  // }
-
-=======
->>>>>>> c8e7fd060f19ca8158ccd4ae4df735a9ea144a78
   @override
   Widget build(BuildContext context) {
     return Container(
