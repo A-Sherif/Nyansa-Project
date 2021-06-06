@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../components/Header.dart';
 import 'components/ProficiencyList.dart';
-import 'components/Age.dart';
+
+import 'RestrictionScreen.dart';
+import 'ProficiencyExp.dart';
 
 class ProficiencyScreen extends StatelessWidget {
   @override
@@ -12,10 +14,22 @@ class ProficiencyScreen extends StatelessWidget {
       child: Scaffold(
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
-            Navigator.pushNamed(context, '/Restriction');
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return RestrictionScreen();
+                },
+              ),
+            );
           },
-          backgroundColor: Colors.cyan,
-          label: Text('Continue'),
+          backgroundColor: Colors.cyan[200],
+          label: Text(
+            'Continue',
+            style: TextStyle(
+              color: Colors.cyan[800],
+            ),
+          ),
         ),
         body: Container(
             height: size.height,
@@ -27,42 +41,28 @@ class ProficiencyScreen extends StatelessWidget {
                 Container(
                   child: Column(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 5),
-                        child: Text(
-                          'Set your child\s age',
-                          style: TextStyle(
-                            fontSize: 15.0,
-                          ),
-                        ),
-                      ),
-                      Age(),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          top: 10,
-                        ),
-                        child: Text(
-                          'Set your child\s reading level',
-                          style: TextStyle(
-                            fontSize: 15.0,
-                          ),
-                        ),
-                      ),
-                      Proficiency(),
                       Container(
                         margin: EdgeInsets.symmetric(
-                          horizontal: size.width * 0.2,
+                          horizontal: size.width * 0.25,
                           vertical: 10,
                         ),
                         child: ElevatedButton(
                             onPressed: () {
-                              Navigator.pushNamed(context, '/Explanation');
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return ProficiencyExplanation();
+                                  },
+                                ),
+                              );
                             },
                             child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Icon(Icons.help_outline),
                                 Text(
-                                    'Get help understanding child\'s proficiency level')
+                                    'Get help understanding \nchild\'s proficiency level')
                               ],
                             ),
                             style: ElevatedButton.styleFrom(
@@ -77,6 +77,18 @@ class ProficiencyScreen extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(10.0)),
                             )),
                       ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          top: 10,
+                        ),
+                        child: Text(
+                          'Set your child\s reading level',
+                          style: TextStyle(
+                            fontSize: 15.0,
+                          ),
+                        ),
+                      ),
+                      Proficiency(),
                     ],
                   ),
                 ),

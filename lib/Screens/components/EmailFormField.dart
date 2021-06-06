@@ -12,7 +12,9 @@ class _EmailFormFieldState extends State<EmailFormField> {
   Widget build(BuildContext context) {
     return TextFormField(
       decoration: InputDecoration(
-        icon: Icon(Icons.email),
+        icon: Icon(
+          Icons.email,
+        ),
         labelText: 'Email',
         hintText: 'nyansa@nyansa.com',
       ),

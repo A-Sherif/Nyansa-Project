@@ -46,7 +46,7 @@ class _RestrictionItemsState extends State<RestrictionItems> {
         ElevatedButton(
           child: Text('Reset'),
           style: ElevatedButton.styleFrom(
-            primary: Colors.cyan,
+            primary: Colors.cyan[500],
             onPrimary: Colors.white,
           ),
           onPressed: () {
@@ -66,6 +66,8 @@ class _RestrictionItemsState extends State<RestrictionItems> {
           child: Scrollbar(
             isAlwaysShown: true,
             interactive: true,
+            thickness: 8.0,
+            radius: Radius.circular(10.0),
             controller: _scrollController,
             child: ListView.builder(
                 controller: _scrollController,

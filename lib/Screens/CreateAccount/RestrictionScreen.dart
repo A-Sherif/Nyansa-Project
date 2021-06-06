@@ -4,6 +4,8 @@ import '../components/Header.dart';
 import 'components/RestrictionItems.dart';
 import '../components/SearchBox.dart';
 
+import 'TimerScreen.dart';
+
 class RestrictionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -16,10 +18,22 @@ class RestrictionScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
-            Navigator.pushNamed(context, '/Timer');
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return TimerScreen();
+                },
+              ),
+            );
           },
-          backgroundColor: Colors.cyan,
-          label: Text('Continue'),
+          backgroundColor: Colors.cyan[200],
+          label: Text(
+            'Continue',
+            style: TextStyle(
+              color: Colors.cyan[800],
+            ),
+          ),
         ),
         body: SafeArea(
           child: ListView(physics: NeverScrollableScrollPhysics(), children: [
