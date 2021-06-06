@@ -8,6 +8,7 @@ class Categories extends StatelessWidget {
     'Folk Tales',
     'Fantasy',
     'Picture books',
+    'More'
   ];
 
   final List<Color> categoryColor = [
@@ -16,46 +17,45 @@ class Categories extends StatelessWidget {
     Colors.brown[400],
     Colors.purple[300],
     Colors.orange[200],
+    Colors.cyan,
   ];
 
   @override
   Widget build(BuildContext context) {
+    Orientation orientation = MediaQuery.of(context).orientation;
     Size size = MediaQuery.of(context).size;
     return Container(
-      height: 50,
+      height: (orientation == Orientation.portrait)
+          ? size.height / 3
+          : size.width / 3.5,
       width: size.width,
       margin: EdgeInsets.only(
         top: 5,
         bottom: 5,
       ),
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
+      child: GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: (orientation == Orientation.portrait) ? 2 : 3,
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
+          childAspectRatio: 2.5,
+        ),
+        physics: NeverScrollableScrollPhysics(),
         itemCount: categories.length,
         itemBuilder: (context, index) {
           return Container(
-            height: 50,
-            width: 130,
-            margin: EdgeInsets.only(right: 10),
             child: CategoryButton(
               label: '${categories[index]}',
               background: categoryColor[index],
               fontSize: 16,
-              press: () {},
+              press: () {
+                if (categories[index].contains('More')) {
+                } else {}
+              },
             ),
           );
         },
       ),
     );
-    // Container(
-    //   height: 50,
-    //   width: 130,
-    //   margin: EdgeInsets.only(right: 10),
-    //   child: CategoryButton(
-    //     label: 'More',
-    //     background: Colors.cyan,
-    //     fontSize: 16,
-    //     press: () {},
-    //   ),
-    // );
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'components/HomeHeader.dart';
 import 'components/RecommendedBooks.dart';
+import 'components/RecommendedCarousel.dart';
 import 'components/Categories.dart';
 import 'components/PopularBooks.dart';
 
@@ -67,7 +68,8 @@ class HomeScreen extends StatelessWidget {
                       fontWeight: FontWeight.w300,
                     ),
                   ),
-                  RecommendedBooks(size: size),
+                  // RecommendedBooks(size: size),
+                  RecommendedCarousel(),
                   Container(
                     margin: EdgeInsets.only(top: 10),
                     child: Column(

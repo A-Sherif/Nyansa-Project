@@ -56,7 +56,7 @@ class _ProficiencyState extends State<Proficiency> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5.0)),
                       tileColor: selectedIndex == index
-                          ? Colors.cyan
+                          ? Colors.cyan[500]
                           : Colors.grey[500],
                       onTap: () {
                         setState(() {

@@ -7,20 +7,69 @@ class Timer extends StatefulWidget {
 }
 
 class _TimerState extends State<Timer> {
-  double _currentDoubleValue = 0.40;
+  int _currentTime = 40;
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Column(
         children: [
-          DecimalNumberPicker(
-            value: _currentDoubleValue,
-            minValue: 0,
-            maxValue: 24,
-            decimalPlaces: 2,
-            onChanged: (value) => setState(() => _currentDoubleValue = value),
+          Container(
+            decoration:
+                BoxDecoration(shape: BoxShape.circle, color: Colors.cyan[200]),
+            child: IconButton(
+              icon: Icon(
+                Icons.arrow_drop_up,
+                color: Colors.cyan[800],
+              ),
+              iconSize: 50,
+              onPressed: () {
+                setState(() {
+                  final newValue = _currentTime - 1;
+                  _currentTime = newValue.clamp(0, 60);
+                });
+              },
+            ),
           ),
-          Text('Current Time: $_currentDoubleValue'),
+          NumberPicker(
+            value: _currentTime,
+            minValue: 0,
+            maxValue: 60,
+            onChanged: (value) => setState(() => _currentTime = value),
+            selectedTextStyle: TextStyle(
+              color: Colors.cyan,
+              fontSize: 32,
+              fontWeight: FontWeight.w600,
+            ),
+            itemWidth: 80,
+            itemCount: 3,
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.cyan, width: 2),
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 5.0),
+            child: Text('Current Time: $_currentTime'),
+          ),
+          Container(
+            alignment: Alignment.center,
+            decoration:
+                BoxDecoration(shape: BoxShape.circle, color: Colors.cyan[200]),
+            child: IconButton(
+              icon: Icon(
+                Icons.arrow_drop_down,
+                color: Colors.cyan[800],
+              ),
+              iconSize: 50,
+              alignment: Alignment.center,
+              onPressed: () {
+                setState(() {
+                  final newValue = _currentTime + 1;
+                  _currentTime = newValue.clamp(0, 60);
+                });
+              },
+            ),
+          ),
         ],
       ),
     );

@@ -38,13 +38,17 @@ class _AgeState extends State<Age> {
             fontSize: 32,
             fontWeight: FontWeight.w600,
           ),
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.cyan, width: 2),
+            borderRadius: BorderRadius.circular(10.0),
+          ),
           onChanged: (value) => setState(() => _currentValue = value),
         ),
         IconButton(
           icon: Icon(Icons.add),
           onPressed: () => setState(
             () {
-              if (_currentValue <= 4) {
+              if (_currentValue <= 12) {
                 int newValue = _currentValue + 1;
                 _currentValue = newValue.clamp(0, 12);
               } else {

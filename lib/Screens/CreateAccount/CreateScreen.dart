@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import 'components/FormInput.dart';
-
 import '../components/Header.dart';
 import '../components/roundedButton.dart';
 import '../components/EmailFormField.dart';
 import '../components/PasswordFormField.dart';
 import 'components/termsText.dart';
+
+import 'NameScreen.dart';
 
 class CreateScreen extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
@@ -37,20 +37,6 @@ class CreateScreen extends StatelessWidget {
                         child: ListView(children: [
                           Column(
                             children: [
-                              FormInput(
-                                icon: Icon(Icons.face),
-                                labelText: 'Child\'s Name',
-                                hintText: 'Nyansa',
-                                autofocus: true,
-                                hide: false,
-                                validate: (value) {
-                                  if (value.isEmpty) {
-                                    return 'Please enter your child\'s name';
-                                  } else if (value.length <= 2) {
-                                    return 'Child\'s name cannot be less than 2 letters';
-                                  }
-                                },
-                              ),
                               EmailFormField(),
                               PasswordFormField(
                                 validate: (value) {
@@ -64,14 +50,16 @@ class CreateScreen extends StatelessWidget {
                               TermsAndConditionsText(),
                               RoundedButton(
                                 text: 'Continue',
-                                primary: Colors.cyan,
-                                onPrimary: Colors.white,
+                                primary: Colors.cyan[200],
+                                onPrimary: Colors.cyan[800],
                                 fontSize: 18,
                                 press: () {
                                   if (_formKey.currentState.validate()) {
-                                    Navigator.pushNamed(
+                                    Navigator.push(
                                       context,
-                                      '/Proficiency',
+                                      MaterialPageRoute(builder: (context) {
+                                        return NameScreen();
+                                      }),
                                     );
                                   }
                                 },

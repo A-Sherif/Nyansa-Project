@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'Screens/WelcomeScreen.dart';
 import 'Screens/CreateAccount/CreateScreen.dart';
-import 'Screens/CreateAccount/ProficiencyScreen.dart';
-import 'Screens/CreateAccount/ProficiencyExp.dart';
-import 'Screens/CreateAccount/RestrictionScreen.dart';
-import 'Screens/CreateAccount/TimerScreen.dart';
-import 'Screens/CreateAccount/FinalCreateScreen.dart';
 import 'Screens/LoginScreen.dart';
 import 'Screens/BottomTab.dart';
 import 'Screens/HomeScreen.dart';
@@ -14,34 +10,44 @@ import 'Screens/FavoritesScreen.dart';
 import 'Screens/SearchScreen.dart';
 import 'Screens/ProfileScreen.dart';
 import 'Screens/BookInfo.dart';
+import 'Screens/ContentsScreen.dart';
+import 'Screens/EditProfile.dart';
+import 'Screens/ReadScreen.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.portraitUp,
+    ]);
+    SystemChrome.setEnabledSystemUIOverlays([]);
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.cyan,
+    ));
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Nyansa App',
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.grey[200],
         primaryColor: Colors.cyan,
+        shadowColor: Colors.transparent,
       ),
       home: WelcomeScreen(),
       routes: {
         '/Login': (context) => LoginScreen(),
         '/Create': (context) => CreateScreen(),
-        '/Proficiency': (context) => ProficiencyScreen(),
-        '/Explanation': (context) => ProficiencyExplanation(),
-        '/Restriction': (context) => RestrictionScreen(),
-        '/Timer': (context) => TimerScreen(),
-        '/Final': (context) => FinalCreateScreen(),
         '/NavBar': (context) => BottomTab(),
         '/Home': (context) => HomeScreen(),
         '/Favorites': (context) => FavoritesScreen(),
         '/Search': (context) => SearchScreen(),
         '/Profile': (context) => ProfileScreen(),
         '/BookInfo': (context) => BookInfo(),
+        '/Contents': (context) => ContentsScreen(),
+        '/EditProfile': (context) => EditProfile(),
+        '/Read': (context) => ReadingScreen(),
       },
     );
   }

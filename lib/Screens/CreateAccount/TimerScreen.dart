@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../components/Header.dart';
 import 'components/Timer.dart';
 
+import 'PinScreen.dart';
+
 class TimerScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -11,10 +13,17 @@ class TimerScreen extends StatelessWidget {
       child: Scaffold(
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
-            Navigator.pushNamed(context, '/Final');
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return PinScreen();
+            }));
           },
-          backgroundColor: Colors.cyan,
-          label: Text('Continue'),
+          backgroundColor: Colors.cyan[200],
+          label: Text(
+            'Continue',
+            style: TextStyle(
+              color: Colors.cyan[800],
+            ),
+          ),
         ),
         body: Container(
           child: Column(

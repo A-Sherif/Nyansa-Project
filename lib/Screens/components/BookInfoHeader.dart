@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'CategoryButton.dart';
-
 class BookInfoHeader extends StatelessWidget {
   const BookInfoHeader({
     Key key,
@@ -15,9 +13,9 @@ class BookInfoHeader extends StatelessWidget {
     return Container(
       height: size.height * 0.3,
       width: size.width,
-      padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
-      color: Colors.white,
-      child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+      padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
+      color: Colors.grey[300],
+      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Column(children: [
           RichText(
             text: TextSpan(
@@ -38,22 +36,6 @@ class BookInfoHeader extends StatelessWidget {
                 ),
               ],
             ),
-          ),
-          Row(
-            children: [
-              CategoryButton(
-                label: 'Action',
-                background: Colors.red[400],
-                fontSize: 12,
-                press: () {},
-              ),
-              CategoryButton(
-                label: 'Fantasy',
-                background: Colors.purple[300],
-                fontSize: 12,
-                press: () {},
-              ),
-            ],
           ),
         ]),
         Container(

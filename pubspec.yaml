@@ -23,10 +23,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  google_fonts: ^1.1.0
-  flutter_svg: ^0.17.4
+  google_fonts: ^2.1.0
+  flutter_svg: ^0.22.0
   numberpicker: ^2.1.1
   email_validator: ^2.0.1
+  animations: ^2.0.0
+  pinput: ^1.2.0
+  carousel_slider: ^3.0.0
 
 
   # The following adds the Cupertino Icons font to your application.
