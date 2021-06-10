@@ -21,33 +21,38 @@ class ChapterList extends StatelessWidget {
           height: 10.0,
         ),
         itemBuilder: (context, index) {
-          return Container(
-            height: 50,
-            margin: EdgeInsets.symmetric(
-              vertical: 5,
-            ),
-            child: Row(
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(right: 15.0),
-                  child: Text(
-                    '${chapters.indexOf(chapters[index]) + 1}',
+          return GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, '/Read');
+            },
+            child: Container(
+              height: 50,
+              margin: EdgeInsets.symmetric(
+                vertical: 5,
+              ),
+              child: Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(right: 15.0),
+                    child: Text(
+                      '${chapters.indexOf(chapters[index]) + 1}',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.grey[700],
+                      ),
+                    ),
+                  ),
+                  Text(
+                    '${chapters[index]}',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
                       color: Colors.grey[700],
                     ),
                   ),
-                ),
-                Text(
-                  '${chapters[index]}',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.grey[700],
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           );
         },

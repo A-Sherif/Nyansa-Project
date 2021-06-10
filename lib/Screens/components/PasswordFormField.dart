@@ -30,7 +30,7 @@ class _PasswordFormFieldState extends State<PasswordFormField> {
           hintText: 'Password',
           suffixIcon: IconButton(
             icon: Icon(
-              _obscureText ? Icons.visibility : Icons.visibility_off,
+              _obscureText ? Icons.visibility_off : Icons.visibility,
             ),
             onPressed: () {
               _visible();

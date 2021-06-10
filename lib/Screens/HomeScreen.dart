@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'components/HomeHeader.dart';
-import 'components/RecommendedBooks.dart';
 import 'components/RecommendedCarousel.dart';
 import 'components/Categories.dart';
 import 'components/PopularBooks.dart';
@@ -13,7 +12,7 @@ class HomeScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: Container(
-          margin: EdgeInsets.fromLTRB(15, 5, 15, 0),
+          margin: EdgeInsets.symmetric(horizontal: 10),
           child: ListView(children: [
             HomeHeader(),
             Container(

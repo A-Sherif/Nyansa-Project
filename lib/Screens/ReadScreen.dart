@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'components/Header.dart';
+import 'ReadingPage.dart';
+import 'QuestionScreen.dart';
+import 'CompletedPage.dart';
 
 class ReadingScreen extends StatefulWidget {
   @override
@@ -35,9 +37,9 @@ class _ReadingScreenState extends State<ReadingScreen> {
     });
   }
 
-  String value =
-      'Blandit mauris, leo venenatis tempus. Etiam sit turpis ultricies posuere non gravida ut egestas. Nibh lacus interdum vitae lorem vitae purus nunc fames potenti. Volutpat egestas felis, ac nec rhoncus. Mi, metus urna magna tincidunt praesent cras eu lectus ut. Nulla sem viverra sed sit fermentum morbi sed. ';
-
+  final PageController _controller = PageController(
+    initialPage: 0,
+  );
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -47,76 +49,45 @@ class _ReadingScreenState extends State<ReadingScreen> {
           _isVisible();
         },
         child: Scaffold(
+          floatingActionButton: Visibility(
+            visible: _visible,
+            child: Container(
+              margin: EdgeInsets.only(top: 10.0),
+              child: FloatingActionButton.extended(
+                label: Text(
+                  'Back',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+                icon: Icon(
+                  Icons.arrow_back,
+                  color: Colors.white,
+                ),
+                backgroundColor: Colors.black54,
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ),
+          ),
+          floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
           body: Container(
             height: size.height,
             width: size.width,
-            child: Stack(
+            child: PageView(
+              controller: _controller,
+              scrollDirection: Axis.horizontal,
               children: [
-                Header(label: 'Back'),
-                Container(
-                  child: Positioned(
-                    top: size.height * 0.2,
-                    child: Image.asset(
-                      'assets/images/Logo.png',
-                      width: size.width * 0.5,
-                      height: size.height * 0.5,
-                    ),
-                  ),
+                ReadingPage(
+                  controller: _controller,
                 ),
-                Positioned(
-                  top: size.height * 0.2,
-                  right: 40,
-                  child: Container(
-                      width: size.width * 0.5,
-                      padding: EdgeInsets.all(10.0),
-                      child: SelectableText(
-                        value,
-                        style: TextStyle(
-                          fontSize: 20,
-                        ),
-                        onTap: () {
-                          _isVisible();
-                        },
-                      )),
+                QuestionScreen(
+                  controller: _controller,
                 ),
-                Positioned(
-                  right: 20,
-                  top: size.height * 0.8,
-                  child: Visibility(
-                    visible: _visible,
-                    child: Container(
-                      width: 200,
-                      decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black,
-                              blurRadius: 6,
-                            )
-                          ],
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(50.0)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          IconButton(
-                            onPressed: () {},
-                            icon: Icon(Icons.music_note_outlined),
-                          ),
-                          IconButton(
-                            onPressed: () {},
-                            icon: Icon(Icons.play_circle_sharp),
-                            iconSize: 30,
-                          ),
-                          IconButton(
-                            onPressed: () {},
-                            icon: Icon(Icons.favorite_outline),
-                            iconSize: 30,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                )
+                CompletedPage(
+                  controller: _controller,
+                ),
               ],
             ),
           ),

@@ -22,12 +22,9 @@ class Categories extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Orientation orientation = MediaQuery.of(context).orientation;
     Size size = MediaQuery.of(context).size;
     return Container(
-      height: (orientation == Orientation.portrait)
-          ? size.height / 3
-          : size.width / 3.5,
+      height: size.height / 2.75,
       width: size.width,
       margin: EdgeInsets.only(
         top: 5,
@@ -35,7 +32,7 @@ class Categories extends StatelessWidget {
       ),
       child: GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: (orientation == Orientation.portrait) ? 2 : 3,
+          crossAxisCount: 2,
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
           childAspectRatio: 2.5,

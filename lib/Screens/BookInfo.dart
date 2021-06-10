@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'components/Header.dart';
 import 'components/BookInfoHeader.dart';
@@ -6,7 +7,21 @@ import 'components/CategoryButton.dart';
 import 'components/AuthorBooks.dart';
 import 'components/SimilarBooks.dart';
 
-class BookInfo extends StatelessWidget {
+class BookInfo extends StatefulWidget {
+  @override
+  _BookInfoState createState() => _BookInfoState();
+}
+
+class _BookInfoState extends State<BookInfo> {
+  @override
+  void initState() {
+    super.initState();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.portraitUp,
+    ]);
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
