@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 
 class CurrentlyReading extends StatelessWidget {
   final List images = [
+    'assets/images/JP_cover.jpg',
     'assets/images/CW.png',
     'assets/images/DOAWP.png',
   ];
   final List titles = [
+    'Jungle Book',
     'Charlotte\'s Web',
     'Diary Of A Wimpy Kid',
   ];
@@ -60,16 +62,22 @@ class CurrentlyReading extends StatelessWidget {
                           bottom: 10,
                           child: Container(
                             padding: EdgeInsets.all(10.0),
-                            width: size.width * 0.3,
-                            child: Text(
-                              '${titles[index]}',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                              ),
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
+                            child: Row(
+                              children: [
+                                Container(
+                                  width: size.width * 0.25,
+                                  child: Text(
+                                    '${titles[index]}',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ),

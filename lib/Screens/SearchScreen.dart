@@ -1,24 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import 'components/Header.dart';
-import 'components/SearchBar.dart';
 import 'components/SearchCategories.dart';
+import 'components/SearchAudio.dart';
 
-class SearchScreen extends StatelessWidget {
-  final PageController _controller = PageController(
-    initialPage: 0,
-  );
+class SearchScreen extends StatefulWidget {
+  @override
+  _SearchScreenState createState() => _SearchScreenState();
+}
+
+class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.mic),
-          backgroundColor: Colors.cyan,
-          onPressed: () {
-            _controller.nextPage(
-                duration: Duration(seconds: 1), curve: Curves.easeIn);
-          },
+        floatingActionButton: Container(
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.cyan[200],
+                offset: Offset(0, 10),
+                blurRadius: 10,
+                spreadRadius: 1,
+              ),
+            ],
+          ),
+          child: FloatingActionButton(
+            child: SvgPicture.asset(
+              'assets/icons/plain-microphone.svg',
+              height: 24,
+            ),
+            backgroundColor: Colors.cyan[300],
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return SearchAudio();
+                },
+              );
+            },
+          ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         body: GestureDetector(
@@ -51,15 +74,6 @@ class SearchScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              // Container(
-              //   child: Column(
-              //     mainAxisAlignment: MainAxisAlignment.center,
-              //     children: [
-              //       Text('Say Something'),
-              //       Icon(Icons.multitrack_audio_rounded, size: 50),
-              //     ],
-              //   ),
-              // ),
               SearchCategories(),
             ],
           ),

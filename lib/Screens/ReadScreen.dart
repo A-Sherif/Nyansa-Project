@@ -80,14 +80,13 @@ class _ReadingScreenState extends State<ReadingScreen> {
               scrollDirection: Axis.horizontal,
               children: [
                 ReadingPage(
+                  visible: _visible,
                   controller: _controller,
                 ),
                 QuestionScreen(
                   controller: _controller,
                 ),
-                CompletedPage(
-                  controller: _controller,
-                ),
+                CompletedPage(),
               ],
             ),
           ),

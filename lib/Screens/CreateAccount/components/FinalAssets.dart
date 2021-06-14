@@ -36,8 +36,9 @@ class FinalizeAssets extends StatelessWidget {
                   RoundedButton(
                     text: 'Continue',
                     fontSize: 16,
-                    primary: Colors.cyan[200],
+                    primary: Colors.cyan[300],
                     onPrimary: Colors.cyan[800],
+                    shadow: Colors.cyan[200],
                     press: () {
                       Navigator.pushNamed(context, '/NavBar');
                     },
@@ -54,7 +55,10 @@ class FinalizeAssets extends StatelessWidget {
                           decoration: TextDecoration.underline,
                         )),
                     onPressed: () {
-                      Navigator.pushNamed(context, '/Create');
+                      Navigator.popUntil(
+                        context,
+                        ModalRoute.withName('/Create'),
+                      );
                     },
                   ),
                   Image.asset(

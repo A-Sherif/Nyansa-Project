@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'BookInfo.dart';
+
 class CompletedPage extends StatefulWidget {
   const CompletedPage({
     Key key,
-    @required PageController controller,
-  })  : _controller = controller,
-        super(key: key);
-
-  final PageController _controller;
+  }) : super(key: key);
 
   @override
   _CompletedPageState createState() => _CompletedPageState();
@@ -23,19 +21,11 @@ class _CompletedPageState extends State<CompletedPage> {
   }
 
   @override
-  dispose() {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitDown,
-      DeviceOrientation.portraitUp,
-    ]);
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return WillPopScope(
       onWillPop: () async {
+        Navigator.popUntil(context, ModalRoute.withName('/BookInfo'));
         return false;
       },
       child: Stack(
@@ -56,7 +46,13 @@ class _CompletedPageState extends State<CompletedPage> {
             child: Container(
               padding: EdgeInsets.all(10.0),
               decoration: BoxDecoration(
-                color: Colors.black54,
+                color: Colors.white70,
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.white54,
+                      offset: Offset(0, 0),
+                      blurRadius: 15)
+                ],
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: Column(
@@ -65,9 +61,9 @@ class _CompletedPageState extends State<CompletedPage> {
                   Text(
                     'You have completed the book',
                     style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white),
+                      fontSize: 30,
+                      fontWeight: FontWeight.w600,
+                    ),
                     textAlign: TextAlign.center,
                   ),
                   Icon(
@@ -97,7 +93,13 @@ class _CompletedPageState extends State<CompletedPage> {
                       ),
                       ElevatedButton(
                         onPressed: () {
-                          Navigator.pop(context);
+                          // Navigator.pushAndRemoveUntil(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //         builder: (context) => BookInfo()),
+                          //     (route) => false);
+                          Navigator.popUntil(
+                              context, ModalRoute.withName('/BookInfo'));
                         },
                         child: Row(
                           children: [
@@ -126,6 +128,7 @@ class _CompletedPageState extends State<CompletedPage> {
             ),
           ),
         ],
+        // ),
       ),
     );
   }

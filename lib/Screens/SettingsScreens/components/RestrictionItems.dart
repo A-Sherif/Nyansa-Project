@@ -43,17 +43,22 @@ class _RestrictionItemsState extends State<RestrictionItems> {
     Size size = MediaQuery.of(context).size;
     return Column(
       children: [
-        ElevatedButton(
-          child: Text('Reset'),
-          style: ElevatedButton.styleFrom(
-            primary: Colors.cyan[300],
-            onPrimary: Colors.white,
+        Container(
+          margin: EdgeInsets.symmetric(
+            vertical: 5,
           ),
-          onPressed: () {
-            setState(() {
-              selectedRestriction.clear();
-            });
-          },
+          child: ElevatedButton(
+            child: Text('Reset'),
+            style: ElevatedButton.styleFrom(
+              primary: Colors.cyan[500],
+              onPrimary: Colors.white,
+            ),
+            onPressed: () {
+              setState(() {
+                selectedRestriction.clear();
+              });
+            },
+          ),
         ),
         Container(
           height: size.height * 0.7,
@@ -82,7 +87,6 @@ class _RestrictionItemsState extends State<RestrictionItems> {
                             ? TextStyle(
                                 decoration: TextDecoration.lineThrough,
                                 decorationThickness: 2.5,
-                                decorationColor: Colors.red[400],
                               )
                             : null,
                       ),

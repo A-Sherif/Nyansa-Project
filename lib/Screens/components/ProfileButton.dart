@@ -6,11 +6,14 @@ class ProfileButton extends StatelessWidget {
     this.label,
     this.icon,
     this.press,
+    this.color,
+    this.shadow,
   }) : super(key: key);
 
   final String label;
   final Function press;
   final Icon icon;
+  final Color color, shadow;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +26,20 @@ class ProfileButton extends StatelessWidget {
           children: [
             Row(
               children: [
-                icon,
+                Container(
+                    padding: EdgeInsets.all(10.0),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: color,
+                      boxShadow: [
+                        BoxShadow(
+                            color: shadow,
+                            offset: Offset(0, 0),
+                            blurRadius: 8,
+                            spreadRadius: 1),
+                      ],
+                    ),
+                    child: icon,),
                 Container(
                   margin: EdgeInsets.only(left: 10),
                   child: Text(

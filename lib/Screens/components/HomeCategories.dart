@@ -8,6 +8,16 @@ class HomeCategories extends StatelessWidget {
     'Cats',
   ];
 
+  final List bookTitle = [
+    'assets/images/JP_title.png',
+    'assets/images/DTE.png',
+  ];
+
+  final List bookCharacter = ['assets/images/JP_bear.png', ''];
+
+  final List primary = [Colors.lightGreen[800], Colors.pink[800]];
+  final List secondary = [Colors.lightGreen[400], Colors.pink[400]];
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -45,8 +55,15 @@ class HomeCategories extends StatelessWidget {
                 margin: EdgeInsets.only(bottom: 10.0),
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: 2,
+                  itemCount: bookTitle.length,
                   itemBuilder: (context, index) {
+                    bool show() {
+                      if (bookCharacter[index].length <= 1) {
+                        return false;
+                      }
+                      return true;
+                    }
+
                     return GestureDetector(
                       onTap: () {
                         Navigator.pushNamed(context, '/BookInfo');
@@ -59,7 +76,10 @@ class HomeCategories extends StatelessWidget {
                             gradient: LinearGradient(
                                 begin: Alignment.topRight,
                                 end: Alignment.bottomLeft,
-                                colors: [Colors.blue, Colors.blue[800]]),
+                                colors: [
+                                  secondary[index],
+                                  primary[index],
+                                ]),
                             borderRadius: BorderRadius.circular(20.0)),
                         child: Stack(
                           children: [
@@ -70,7 +90,7 @@ class HomeCategories extends StatelessWidget {
                                   height: size.height * 0.15,
                                   width: size.width * 0.6,
                                   image: AssetImage(
-                                    'assets/images/JP_title.png',
+                                    bookTitle[index],
                                   ),
                                 ),
                                 Padding(
@@ -92,15 +112,18 @@ class HomeCategories extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            Positioned(
-                              left: size.width * 0.4,
-                              top: size.height * 0.02,
-                              child: Image(
-                                height: size.height * 0.25,
-                                image: AssetImage(
-                                  'assets/images/JP_bear.png',
+                            Visibility(
+                              visible: show(),
+                              child: Positioned(
+                                left: size.width * 0.4,
+                                top: size.height * 0.02,
+                                child: Image(
+                                  height: size.height * 0.25,
+                                  image: AssetImage(
+                                    bookCharacter[index],
+                                  ),
+                                  fit: BoxFit.fill,
                                 ),
-                                fit: BoxFit.fill,
                               ),
                             ),
                           ],

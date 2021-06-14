@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'roundedButton.dart';
 import 'outlinedButton.dart';
-import 'WelcomeText.dart';
 
 class WelcomeBody extends StatelessWidget {
   @override
@@ -22,8 +21,8 @@ class WelcomeBody extends StatelessWidget {
                     alignment: Alignment.center,
                     child: Image.asset(
                       'assets/images/NyansaLogo.png',
-                      width: size.width * 0.5,
-                      height: size.height * 0.5,
+                      width: size.width * 0.6,
+                      height: size.height * 0.6,
                     ),
                   ),
                   Container(
@@ -32,47 +31,30 @@ class WelcomeBody extends StatelessWidget {
                       padding: EdgeInsets.symmetric(vertical: 20),
                       child: Column(
                         children: [
-                          Container(
-                            padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
-                            child: Column(
-                              children: [
-                                WelcomeText(
-                                  text: 'Create an account your child',
-                                  fontsize: 19.0,
-                                  weight: FontWeight.bold,
-                                ),
-                                WelcomeText(
-                                  text:
-                                      'Only guardians can create an account for a child',
-                                  fontsize: 13.0,
-                                  weight: FontWeight.w300,
-                                ),
-                              ],
-                            ),
-                          ),
                           RoundedButton(
-                            text: 'Create an account',
-                            primary: Colors.cyan,
+                            text: 'Login',
+                            primary: Colors.cyan[400],
                             onPrimary: Colors.white,
+                            shadow: Colors.cyan[200],
                             fontSize: 18.0,
                             press: () {
                               Navigator.pushNamed(
                                 context,
-                                '/Create',
+                                '/Login',
                               );
                             },
                           ),
                           Container(
-                            margin: EdgeInsets.only(top: 5),
+                            margin: EdgeInsets.only(top: 15),
                             child: RoundedOutlineButton(
-                              text: 'Login',
+                              text: 'Create an account',
                               primary: Colors.cyan,
                               borderColor: Colors.cyan,
                               fontSize: 18.0,
                               press: () {
                                 Navigator.pushNamed(
                                   context,
-                                  '/Login',
+                                  '/Create',
                                 );
                               },
                             ),

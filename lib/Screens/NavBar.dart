@@ -2,12 +2,9 @@ import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-// import 'HomeScreen.dart';
-
 import 'HomePage.dart';
 import 'FavoritesScreen.dart';
-// import 'ProfileScreen.dart';
-import 'ParentalLock.dart';
+import 'ProfileScreen.dart';
 import 'SearchScreen.dart';
 
 class BottomTab extends StatefulWidget {
@@ -23,8 +20,7 @@ class _BottomTabState extends State<BottomTab>
     HomeScreen(),
     SearchScreen(),
     FavoritesScreen(),
-    // ProfileScreen()
-    ParentalLock(),
+    ProfileScreen()
   ];
 
   void onTappedBar(int index) {
@@ -36,56 +32,67 @@ class _BottomTabState extends State<BottomTab>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          currentIndex: _selectedIndex,
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home_outlined),
-              activeIcon: Icon(Icons.home_rounded),
-              label: 'Home',
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        currentIndex: _selectedIndex,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home_outlined),
+            activeIcon: Icon(
+              Icons.home_rounded,
+              semanticLabel: 'Home',
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.search_rounded),
-              activeIcon: Icon(
-                Icons.search_rounded,
-              ),
-              label: 'Search',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.favorite_outline_rounded),
-              activeIcon: Icon(
-                Icons.favorite_rounded,
-              ),
-              label: 'Favorites',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.face_outlined),
-              activeIcon: Icon(
-                Icons.face,
-              ),
-              label: 'Profile',
-            ),
-          ],
-          selectedIconTheme: IconThemeData(
-            size: 50,
-            color: Colors.black,
+            label: 'Home',
           ),
-          selectedLabelStyle: TextStyle(
-            fontSize: 16,
-            color: Colors.black,
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search_rounded),
+            activeIcon: Icon(
+              Icons.search_rounded,
+              semanticLabel: 'Search',
+            ),
+            label: 'Search',
           ),
-          selectedItemColor: Colors.black,
-          onTap: onTappedBar,
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite_outline_rounded),
+            activeIcon: Icon(
+              Icons.favorite_rounded,
+              semanticLabel: 'Favorites',
+            ),
+            label: 'Favorites',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.face_outlined),
+            activeIcon: Icon(
+              Icons.face,
+              semanticLabel: 'Profile',
+            ),
+            label: 'Profile',
+          ),
+        ],
+        selectedIconTheme: IconThemeData(
+          size: 50,
+          color: Colors.black,
         ),
-        body: PageTransitionSwitcher(
-          transitionBuilder: (child, primaryAnimation, secondaryAnimation) =>
-              FadeThroughTransition(
-            animation: primaryAnimation,
-            secondaryAnimation: secondaryAnimation,
-            child: child,
-          ),
-          child: pages[_selectedIndex],
-        ));
+        selectedLabelStyle:
+            TextStyle(fontSize: 16, color: Colors.black, shadows: [
+          Shadow(
+            color: Colors.black45,
+            offset: Offset(0, 10),
+            blurRadius: 10,
+          )
+        ]),
+        selectedItemColor: Colors.black,
+        onTap: onTappedBar,
+      ),
+      body: PageTransitionSwitcher(
+        transitionBuilder: (child, primaryAnimation, secondaryAnimation) =>
+            FadeThroughTransition(
+          animation: primaryAnimation,
+          secondaryAnimation: secondaryAnimation,
+          child: child,
+        ),
+        child: pages[_selectedIndex],
+      ),
+    );
   }
 }

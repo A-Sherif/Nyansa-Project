@@ -16,11 +16,14 @@ class _ParentalLockState extends State<ParentalLock> {
           padding: EdgeInsets.symmetric(horizontal: 15),
           child: Column(
             children: [
-              Text(
-                'Enter Parental Lock Pin',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 19,
+              Container(
+                padding: EdgeInsets.only(top: 15),
+                child: Text(
+                  'Enter Parental Lock Pin',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 19,
+                  ),
                 ),
               ),
               Container(

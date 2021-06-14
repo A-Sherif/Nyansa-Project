@@ -15,12 +15,6 @@ class _PinInputState extends State<PinInput> {
 
   @override
   Widget build(BuildContext context) {
-    final BoxDecoration pinPutDecoration = BoxDecoration(
-        borderRadius: BorderRadius.circular(5.0),
-        border: Border.all(
-          color: Colors.cyan[200],
-          width: 2,
-        ));
     return Form(
       key: _formKey,
       child: Column(
@@ -28,10 +22,8 @@ class _PinInputState extends State<PinInput> {
         children: [
           PinPut(
             validator: (s) {
-              if (s.isEmpty) {
-                return 'Enter a pin';
-              } else if (s.length < 4) {
-                return 'Enter a valid pin';
+              if (s.isEmpty || s.length < 4) {
+                return '';
               }
               return null;
             },
@@ -41,15 +33,23 @@ class _PinInputState extends State<PinInput> {
             fieldsCount: 4,
             obscureText: '●',
             fieldsAlignment: MainAxisAlignment.spaceEvenly,
-            textStyle: TextStyle(fontSize: 20.0, color: Colors.black),
+            textStyle: TextStyle(
+              fontSize: 20.0,
+              color: Colors.cyan[200],
+            ),
+            preFilledWidget: Text(
+              '●',
+              style: TextStyle(
+                fontSize: 20.0,
+                color: Colors.grey,
+              ),
+            ),
             eachFieldMargin: EdgeInsets.symmetric(vertical: 10),
             eachFieldAlignment: Alignment.center,
             eachFieldWidth: 40.0,
             eachFieldHeight: 40.0,
             focusNode: _pinPutFocusNode,
             controller: _pinPutController,
-            submittedFieldDecoration: pinPutDecoration,
-            followingFieldDecoration: pinPutDecoration,
             pinAnimationType: PinAnimationType.scale,
           ),
           Container(
@@ -63,7 +63,7 @@ class _PinInputState extends State<PinInput> {
             shrinkWrap: true,
             crossAxisSpacing: 10,
             mainAxisSpacing: 10,
-            padding: EdgeInsets.fromLTRB(30, 15, 30, 0),
+            padding: EdgeInsets.fromLTRB(30, 15, 30, 15),
             physics: NeverScrollableScrollPhysics(),
             children: [
               ...[1, 2, 3, 4, 5, 6, 7, 8, 9].map((e) {
@@ -78,6 +78,14 @@ class _PinInputState extends State<PinInput> {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: Colors.cyan[200],
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.cyan[100],
+                      blurRadius: 5.0,
+                      spreadRadius: 1.0,
+                      offset: Offset(0, 5.0),
+                    ),
+                  ],
                 ),
                 child: IconButton(
                   icon: Icon(Icons.backspace_outlined),
@@ -100,6 +108,14 @@ class _PinInputState extends State<PinInput> {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: Colors.cyan[200],
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.cyan[100],
+                      blurRadius: 5.0,
+                      spreadRadius: 1.0,
+                      offset: Offset(0, 5.0),
+                    ),
+                  ],
                 ),
                 child: IconButton(
                   icon: Icon(Icons.check_rounded),
@@ -112,6 +128,28 @@ class _PinInputState extends State<PinInput> {
                           return ConfirmPin();
                         }),
                       );
+                    } else {
+                      ScaffoldMessenger.of(context)
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(
+                          SnackBar(
+                            duration: Duration(seconds: 3),
+                            backgroundColor: Colors.red[400],
+                            content: Container(
+                              height: 50,
+                              child: Center(
+                                child: Text(
+                                  'Enter a valid pin',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
                     }
                   },
                 ),
@@ -138,6 +176,14 @@ class RoundedButton extends StatelessWidget {
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: Colors.cyan[200],
+          boxShadow: [
+            BoxShadow(
+              color: Colors.cyan[100],
+              blurRadius: 5.0,
+              spreadRadius: 1.0,
+              offset: Offset(0, 5.0),
+            ),
+          ],
         ),
         alignment: Alignment.center,
         child: Text(

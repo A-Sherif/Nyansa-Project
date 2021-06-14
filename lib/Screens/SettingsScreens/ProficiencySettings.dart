@@ -1,37 +1,15 @@
 import 'package:flutter/material.dart';
 
 import '../components/Header.dart';
-import 'components/ProficiencyList.dart';
+import '../CreateAccount/components/ProficiencyList.dart';
+import '../CreateAccount/ProficiencyExp.dart';
 
-import 'RestrictionScreen.dart';
-import 'ProficiencyExp.dart';
-
-class ProficiencyScreen extends StatelessWidget {
+class ProficiencySettings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.white,
-        floatingActionButton: FloatingActionButton.extended(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) {
-                  return RestrictionScreen();
-                },
-              ),
-            );
-          },
-          backgroundColor: Colors.cyan[200],
-          label: Text(
-            'Continue',
-            style: TextStyle(
-              color: Colors.cyan[800],
-            ),
-          ),
-        ),
         body: Container(
             height: size.height,
             child: Column(

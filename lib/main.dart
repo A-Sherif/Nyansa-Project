@@ -12,7 +12,6 @@ import 'Screens/ProfileScreen.dart';
 import 'Screens/BookInfo.dart';
 import 'Screens/ContentsScreen.dart';
 import 'Screens/ParentalLock.dart';
-import 'Screens/EditProfile.dart';
 import 'Screens/ReadScreen.dart';
 
 void main() => runApp(MyApp());
@@ -54,7 +53,6 @@ class MyApp extends StatelessWidget {
         '/Profile': (context) => ProfileScreen(),
         '/BookInfo': (context) => BookInfo(),
         '/Contents': (context) => ContentsScreen(),
-        '/EditProfile': (context) => EditProfile(),
         '/Read': (context) => ReadingScreen(),
       },
     );
