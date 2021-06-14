@@ -50,8 +50,9 @@ class CreateScreen extends StatelessWidget {
                               TermsAndConditionsText(),
                               RoundedButton(
                                 text: 'Continue',
-                                primary: Colors.cyan[200],
+                                primary: Colors.cyan[300],
                                 onPrimary: Colors.cyan[800],
+                                shadow: Colors.cyan[200],
                                 fontSize: 18,
                                 press: () {
                                   if (_formKey.currentState.validate()) {

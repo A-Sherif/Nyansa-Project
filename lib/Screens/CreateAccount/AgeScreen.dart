@@ -32,8 +32,9 @@ class AgeScreen extends StatelessWidget {
                           margin: EdgeInsets.only(top: 20),
                           child: RoundedButton(
                             text: 'Continue',
-                            primary: Colors.cyan[200],
+                            primary: Colors.cyan[300],
                             onPrimary: Colors.cyan[800],
+                            shadow: Colors.cyan[200],
                             fontSize: 18,
                             press: () {
                               Navigator.push(

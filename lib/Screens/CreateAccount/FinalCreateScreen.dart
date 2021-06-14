@@ -18,7 +18,7 @@ class _FinalCreateScreenState extends State<FinalCreateScreen> {
   }
 
   changeOpacity() {
-    Future.delayed(Duration(milliseconds: 1500), () {
+    Future.delayed(Duration(milliseconds: 1000), () {
       setState(() {
         opacity = opacity == 0.0 ? 1.0 : 1.0;
         changeOpacity();
@@ -43,7 +43,8 @@ class _FinalCreateScreenState extends State<FinalCreateScreen> {
                   children: [
                     AnimatedOpacity(
                         opacity: opacity,
-                        duration: Duration(milliseconds: 1500),
+                        duration: Duration(milliseconds: 1000),
+                        curve: Curves.easeIn,
                         child: FinalizeAssets()),
                   ],
                 ),

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'components/ProfileButton.dart';
-import 'components/ProfileButtons.dart';
+
+import 'SettingsScreen.dart';
+import 'ParentalLock.dart';
 
 class ProfileScreen extends StatelessWidget {
   @override
@@ -9,169 +11,137 @@ class ProfileScreen extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
-        body: Container(
-          margin: EdgeInsets.only(
-            left: 15,
-            right: 15,
-            top: 20,
-          ),
-          child: ListView(children: [
-            Column(
-              children: [
-                Container(
-                  height: 100,
-                  width: size.width,
-                  padding: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.white,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Nyansa',
-                        style: TextStyle(
-                          fontSize: 32,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Points: ',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w400,
+        // backgroundColor: Colors.white,
+        body: Column(
+          children: [
+            Flexible(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    child: Column(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(
+                            bottom: 15,
+                          ),
+                          padding: EdgeInsets.all(
+                            10,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.vertical(
+                              bottom: Radius.circular(10.0),
                             ),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black12,
+                                offset: Offset(0, 10),
+                                spreadRadius: 1,
+                                blurRadius: 10,
+                              ),
+                            ],
                           ),
-                          Text(
-                            '0',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w500,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Nyansa',
+                                style: TextStyle(
+                                  fontSize: 32,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              Container(
+                                margin:
+                                    EdgeInsets.only(right: size.width * 0.4),
+                                child: Divider(
+                                  thickness: 2,
+                                ),
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Points: ',
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                  Text(
+                                    '0',
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Text(
+                                'Earn points by reading',
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w300,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(
+                            left: 15,
+                            right: 15,
+                          ),
+                          child: ProfileButton(
+                            label: 'Settings',
+                            icon: Icon(
+                              Icons.settings_outlined,
+                              size: 20,
+                              color: Colors.white,
                             ),
-                          ),
-                        ],
-                      ),
-                      Text('Earn points by reading',
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w300,
-                          ))
-                    ],
-                  ),
-                ),
-                ProfileButtons(),
-                Container(
-                  margin: EdgeInsets.symmetric(vertical: 10),
-                  padding: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.white,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        padding: EdgeInsets.only(bottom: 10),
-                        child: Text(
-                          'Personal Information',
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w400,
+                            color: Colors.cyan[300],
+                            shadow: Colors.cyan[200],
+                            press: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ParentalLock(),
+                                ),
+                              );
+                            },
                           ),
                         ),
-                      ),
-                      ProfileButton(
-                        label: 'Edit Profile',
-                        press: () {Navigator.pushNamed(context,'/EditProfile');},
-                      ),
-                      ProfileButton(
-                        label: 'Reading Settings',
-                        press: () {},
-                      ),
-                      ProfileButton(
-                        label: 'Account Settings',
-                        press: () {},
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                Container(
-                  margin: EdgeInsets.symmetric(vertical: 10),
-                  padding: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.white,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        padding: EdgeInsets.only(bottom: 10),
-                        child: Text(
-                          'Support',
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ),
-                      ProfileButton(
-                        label: 'Recommend A Book',
-                        press: () {},
-                      ),
-                      ProfileButton(
-                        label: 'Get Help',
-                        press: () {},
-                      ),
-                      ProfileButton(
-                        label: 'Terms & Privacy',
-                        press: () {},
-                      ),
-                      ProfileButton(
-                        label: 'About',
-                        press: () {},
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.symmetric(vertical: 10),
-                  padding: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.white,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        padding: EdgeInsets.only(bottom: 10),
-                        child: Text(
-                          'Actions',
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ),
-                      ProfileButton(
-                        label: 'Switch Accounts',
-                        press: () {},
-                      ),
-                      ProfileButton(
-                        label: 'Log Out',
-                        press: () {},
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ]),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.red[400],
+                borderRadius: BorderRadius.circular(50),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.red[200],
+                    offset: Offset(0, 10),
+                    blurRadius: 10.0,
+                    spreadRadius: 1,
+                  ),
+                ],
+              ),
+              margin: EdgeInsets.only(bottom: 50),
+              padding: EdgeInsets.all(20),
+              child: Text(
+                'Log Out',
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white),
+              ),
+            ),
+          ],
         ),
       ),
     );

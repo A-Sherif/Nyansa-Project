@@ -63,8 +63,9 @@ class LoginScreen extends StatelessWidget {
                                         child: RoundedButton(
                                           text: 'Login',
                                           fontSize: 18,
-                                          primary: Colors.cyan,
+                                          primary: Colors.cyan[300],
                                           onPrimary: Colors.white,
+                                          shadow: Colors.cyan[200],
                                           press: () {
                                             if (_formKey.currentState
                                                 .validate()) {

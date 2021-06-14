@@ -46,7 +46,7 @@ class _RestrictionItemsState extends State<RestrictionItems> {
         ElevatedButton(
           child: Text('Reset'),
           style: ElevatedButton.styleFrom(
-            primary: Colors.cyan[500],
+            primary: Colors.cyan[300],
             onPrimary: Colors.white,
           ),
           onPressed: () {
@@ -82,6 +82,7 @@ class _RestrictionItemsState extends State<RestrictionItems> {
                             ? TextStyle(
                                 decoration: TextDecoration.lineThrough,
                                 decorationThickness: 2.5,
+                                decorationColor: Colors.red[400],
                               )
                             : null,
                       ),

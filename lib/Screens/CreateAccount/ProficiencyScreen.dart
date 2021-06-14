@@ -12,6 +12,7 @@ class ProficiencyScreen extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.white,
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
             Navigator.push(
@@ -66,7 +67,7 @@ class ProficiencyScreen extends StatelessWidget {
                               ],
                             ),
                             style: ElevatedButton.styleFrom(
-                              primary: Colors.white,
+                              primary: Colors.grey.withOpacity(0.1),
                               onPrimary: Colors.black,
                               textStyle: TextStyle(
                                 fontWeight: FontWeight.w400,
@@ -78,13 +79,13 @@ class ProficiencyScreen extends StatelessWidget {
                             )),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(
-                          top: 10,
+                        padding: EdgeInsets.symmetric(
+                          vertical: 15,
                         ),
                         child: Text(
                           'Set your child\s reading level',
                           style: TextStyle(
-                            fontSize: 15.0,
+                            fontSize: 16.0,
                           ),
                         ),
                       ),

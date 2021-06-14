@@ -40,7 +40,7 @@ class _AgeState extends State<Age> {
           ),
           decoration: BoxDecoration(
             border: Border.all(color: Colors.cyan, width: 2),
-            borderRadius: BorderRadius.circular(10.0),
+            shape: BoxShape.circle,
           ),
           onChanged: (value) => setState(() => _currentValue = value),
         ),

@@ -1,60 +1,93 @@
 import 'package:flutter/material.dart';
 
-import 'CategoryButton.dart';
+class Category {
+  final String title;
+  final String image;
+
+  Category(this.title, this.image);
+}
 
 class SearchCategories extends StatelessWidget {
-  final List<String> categories = [
-    'Action',
-    'Adventure',
-    'Folk Tales',
-    'Fantasy',
-    'Picture books',
-    'Mystery',
-    'Sci-fi',
-    'Nature'
-  ];
-
-  final List<Color> categoryColor = [
-    Colors.red[400],
-    Colors.blue[500],
-    Colors.brown[400],
-    Colors.lightGreen[400],
-    Colors.orange[200],
-    Colors.indigo[400],
-    Colors.deepPurple[500],
-    Colors.green[500],
-  ];
-
   @override
   Widget build(BuildContext context) {
-    Orientation orientation = MediaQuery.of(context).orientation;
     Size size = MediaQuery.of(context).size;
-    return Expanded(
-      child: Container(
-        height: size.height,
-        width: size.width,
-        margin: EdgeInsets.only(
-          left: 15,
-          right: 15,
+    final Map<String, List<Category>> category = {
+      'category': [
+        Category(
+          'Colors',
+          'assets/images/Colors.png',
         ),
-        padding: EdgeInsets.only(bottom: 15),
-        alignment: Alignment.center,
+        Category(
+          'Animals',
+          'assets/images/Animals.png',
+        ),
+        Category(
+          'Objects',
+          'assets/images/Objects.png',
+        ),
+        Category(
+          'Dogs',
+          'assets/images/Dogs.png',
+        ),
+        Category(
+          'Bears',
+          'assets/images/Bears.png',
+        ),
+      ],
+    };
+
+    List<Category> categoryTile = [];
+    category.values.forEach((categories) {
+      categories.forEach((category) {
+        categoryTile.add(category);
+      });
+    });
+    return Flexible(
+      child: Container(
+        width: size.width,
+        padding: EdgeInsets.symmetric(
+          horizontal: 15,
+        ),
         child: GridView.builder(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: (orientation == Orientation.portrait) ? 2 : 3,
-              crossAxisSpacing: 10,
+              crossAxisCount: 2,
+              crossAxisSpacing: 20,
               mainAxisSpacing: 20,
+              childAspectRatio: 0.75,
             ),
-            itemCount: categories.length,
+            itemCount: categoryTile.length,
             itemBuilder: (context, index) {
+              Category category = categoryTile[index];
+              String title = category.title;
+              String image = category.image;
               return Container(
-                height: 100,
-                width: 800,
-                child: CategoryButton(
-                  label: '${categories[index]}',
-                  background: categoryColor[index],
-                  fontSize: 20,
-                  press: () {},
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(15.0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black12,
+                      blurRadius: 10,
+                      spreadRadius: 1,
+                      offset: Offset(5, 10),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Image.asset(
+                      image,
+                      height: size.height * 0.25,
+                    ),
+                    Text(
+                      title,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
                 ),
               );
             }),
