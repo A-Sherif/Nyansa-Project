@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../components/Header.dart';
 import 'components/RestrictionItems.dart';
-import '../components/SearchBox.dart';
 
 class RestrictionsSettings extends StatelessWidget {
   @override
@@ -20,7 +19,6 @@ class RestrictionsSettings extends StatelessWidget {
                 Header(
                   label: 'Change reading restriction',
                 ),
-                SearchBox(),
                 RestrictionItems(),
               ],
             ),

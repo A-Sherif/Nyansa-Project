@@ -1,31 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:nyansa/Services/auth.dart';
 import 'package:pinput/pin_put/pin_put.dart';
 
-import '../components/Header.dart';
-import 'FinalCreateScreen.dart';
+import 'Header.dart';
+import 'loading.dart';
 
-class ConfirmPin extends StatefulWidget {
-  final String pinNumber;
-  const ConfirmPin({
-    Key key,
-    @required this.pinNumber,
-  }) : super(key: key);
+class LogOutLock extends StatefulWidget {
   @override
-  _ConfirmPinState createState() => _ConfirmPinState();
+  _LogOutLockState createState() => _LogOutLockState();
 }
 
-class _ConfirmPinState extends State<ConfirmPin> {
+class _LogOutLockState extends State<LogOutLock> {
   final _formKey = GlobalKey<FormState>();
   final _pinPutController = TextEditingController();
   final _pinPutFocusNode = FocusNode();
+  final AuthService _auth = AuthService();
+
+  bool loading = false;
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return loading? Loading() :SafeArea(
       child: Scaffold(
         body: Container(
           child: Column(
             children: [
-              Header(label: 'Go Back'),
+              Header(label: 'Log Out'),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 15),
                 child: Form(
@@ -35,9 +35,7 @@ class _ConfirmPinState extends State<ConfirmPin> {
                     children: [
                       PinPut(
                         validator: (s) {
-                          if (s.isEmpty ||
-                              s.length < 4 ||
-                              s != widget.pinNumber) {
+                          if (s.isEmpty || s.length < 4) {
                             return '';
                           }
                           return null;
@@ -70,7 +68,7 @@ class _ConfirmPinState extends State<ConfirmPin> {
                       Container(
                         margin: EdgeInsets.symmetric(vertical: 5),
                         child: Text(
-                          'Confirm Pin',
+                          'Enter Pin To Log Out',
                         ),
                       ),
                       GridView.count(
@@ -138,17 +136,12 @@ class _ConfirmPinState extends State<ConfirmPin> {
                             child: IconButton(
                               icon: Icon(Icons.check_rounded),
                               color: Colors.cyan[800],
-                              onPressed: () {
+                              onPressed: () async {
                                 if (_formKey.currentState.validate()) {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) {
-                                        return FinalCreateScreen();
-                                      },
-                                    ),
-                                  );
+                                  setState(() => loading = true);
+                                  await _auth.signOut();
                                 } else {
+                                  setState(() => loading = false);
                                   ScaffoldMessenger.of(context)
                                     ..hideCurrentSnackBar()
                                     ..showSnackBar(
@@ -159,7 +152,7 @@ class _ConfirmPinState extends State<ConfirmPin> {
                                           height: 50,
                                           child: Center(
                                             child: Text(
-                                              'Enter a valid pin',
+                                              'Incorrect Pin',
                                               style: TextStyle(
                                                 fontSize: 16,
                                                 fontWeight: FontWeight.w500,

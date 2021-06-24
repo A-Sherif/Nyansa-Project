@@ -25,7 +25,10 @@ class _CompletedPageState extends State<CompletedPage> {
     Size size = MediaQuery.of(context).size;
     return WillPopScope(
       onWillPop: () async {
-        Navigator.popUntil(context, ModalRoute.withName('/BookInfo'));
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => BookInfo()),
+            (route) => false);
         return false;
       },
       child: Stack(
@@ -93,13 +96,11 @@ class _CompletedPageState extends State<CompletedPage> {
                       ),
                       ElevatedButton(
                         onPressed: () {
-                          // Navigator.pushAndRemoveUntil(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) => BookInfo()),
-                          //     (route) => false);
-                          Navigator.popUntil(
-                              context, ModalRoute.withName('/BookInfo'));
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => BookInfo()),
+                              (route) => false);
                         },
                         child: Row(
                           children: [

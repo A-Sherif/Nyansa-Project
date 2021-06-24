@@ -1,47 +1,33 @@
 import 'package:flutter/material.dart';
 
-class Category {
-  final String title;
-  final String image;
-
-  Category(this.title, this.image);
-}
+List<Map> category = [
+  {
+    'name': 'Colors',
+    'image': 'assets/images/Colors.png',
+  },
+  {
+    'name': 'Animals',
+    'image': 'assets/images/Animals.png',
+  },
+  {
+    'name': 'Objects',
+    'image': 'assets/images/Objects.png',
+  },
+  {
+    'name': 'Dogs',
+    'image': 'assets/images/Dogs.png',
+  },
+  {
+    'name': 'Bears',
+    'image': 'assets/images/Bears.png',
+  }
+];
 
 class SearchCategories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    final Map<String, List<Category>> category = {
-      'category': [
-        Category(
-          'Colors',
-          'assets/images/Colors.png',
-        ),
-        Category(
-          'Animals',
-          'assets/images/Animals.png',
-        ),
-        Category(
-          'Objects',
-          'assets/images/Objects.png',
-        ),
-        Category(
-          'Dogs',
-          'assets/images/Dogs.png',
-        ),
-        Category(
-          'Bears',
-          'assets/images/Bears.png',
-        ),
-      ],
-    };
 
-    List<Category> categoryTile = [];
-    category.values.forEach((categories) {
-      categories.forEach((category) {
-        categoryTile.add(category);
-      });
-    });
     return Flexible(
       child: Container(
         width: size.width,
@@ -55,11 +41,8 @@ class SearchCategories extends StatelessWidget {
               mainAxisSpacing: 20,
               childAspectRatio: 0.75,
             ),
-            itemCount: categoryTile.length,
+            itemCount: category.length,
             itemBuilder: (context, index) {
-              Category category = categoryTile[index];
-              String title = category.title;
-              String image = category.image;
               return Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -77,11 +60,11 @@ class SearchCategories extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Image.asset(
-                      image,
+                      category[index]['image'],
                       height: size.height * 0.25,
                     ),
                     Text(
-                      title,
+                      category[index]['name'],
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,

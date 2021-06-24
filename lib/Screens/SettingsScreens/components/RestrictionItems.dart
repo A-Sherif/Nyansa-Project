@@ -41,17 +41,20 @@ class _RestrictionItemsState extends State<RestrictionItems> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Column(
+    return Stack(
       children: [
-        Container(
-          margin: EdgeInsets.symmetric(
-            vertical: 5,
-          ),
+        Positioned(
+          left: 20,
+          bottom: 25,
           child: ElevatedButton(
             child: Text('Reset'),
             style: ElevatedButton.styleFrom(
-              primary: Colors.cyan[500],
+              primary: Colors.cyan[300],
               onPrimary: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(50),
+              ),
+              padding: EdgeInsets.all(15.0),
             ),
             onPressed: () {
               setState(() {
@@ -61,7 +64,7 @@ class _RestrictionItemsState extends State<RestrictionItems> {
           ),
         ),
         Container(
-          height: size.height * 0.7,
+          height: size.height * 0.9,
           padding: EdgeInsets.fromLTRB(
             15,
             0,
@@ -87,6 +90,7 @@ class _RestrictionItemsState extends State<RestrictionItems> {
                             ? TextStyle(
                                 decoration: TextDecoration.lineThrough,
                                 decorationThickness: 2.5,
+                                decorationColor: Colors.red[400],
                               )
                             : null,
                       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../components/roundedButton.dart';
+import '../../NavBar.dart';
 
 class FinalizeAssets extends StatelessWidget {
   const FinalizeAssets({
@@ -40,7 +41,14 @@ class FinalizeAssets extends StatelessWidget {
                     onPrimary: Colors.cyan[800],
                     shadow: Colors.cyan[200],
                     press: () {
-                      Navigator.pushNamed(context, '/NavBar');
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => BottomTab(
+                            initialPage: 0,
+                          ),
+                        ),
+                      );
                     },
                   ),
                   TextButton(
