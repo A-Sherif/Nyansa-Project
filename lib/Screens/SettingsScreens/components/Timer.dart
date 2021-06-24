@@ -10,8 +10,11 @@ class _TimerState extends State<Timer> {
   int _currentTime = 40;
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Container(
+      height: size.height,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
             decoration:

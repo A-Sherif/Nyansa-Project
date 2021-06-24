@@ -9,12 +9,16 @@ import 'SearchScreen.dart';
 
 class BottomTab extends StatefulWidget {
   @override
+  const BottomTab({Key key, @required this.initialPage}) : super(key: key);
+
+  final int initialPage;
+
   _BottomTabState createState() => _BottomTabState();
 }
 
 class _BottomTabState extends State<BottomTab>
     with SingleTickerProviderStateMixin {
-  int _selectedIndex = 0;
+  int _selectedIndex;
 
   List pages = [
     HomeScreen(),
@@ -22,6 +26,12 @@ class _BottomTabState extends State<BottomTab>
     FavoritesScreen(),
     ProfileScreen()
   ];
+
+  @override
+  void initState() {
+    _selectedIndex = widget.initialPage;
+    super.initState();
+  }
 
   void onTappedBar(int index) {
     setState(() {

@@ -1,54 +1,28 @@
 import 'package:flutter/material.dart';
 
-class Book {
-  final String title;
-  final cover;
-  final Color primary, secondary;
-
-  Book(
-    this.title,
-    this.cover,
-    this.primary,
-    this.secondary,
-  );
-}
-
 class FavoriteBooks extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Map<String, List<Book>> bookName = {
-      'book 1': [
-        Book(
-          'Jungle Book',
-          'assets/images/JP_cover.jpg',
-          Colors.green[500],
-          Colors.green[200],
-        ),
-      ],
-      'book 2': [
-        Book(
-          'Charlotte\'s Web',
-          'assets/images/CW.png',
-          Colors.blue[500],
-          Colors.blue[200],
-        )
-      ],
-      'book 3': [
-        Book(
-          'Diary Of A Wimpy Kid',
-          'assets/images/DOAWP.png',
-          Colors.red[500],
-          Colors.red[200],
-        )
-      ],
-    };
-
-    List<Book> vBook = [];
-    bookName.values.forEach((books) {
-      books.forEach((book) {
-        vBook.add(book);
-      });
-    });
+    List<Map> book = [
+      {
+        'title': 'Jungle Book',
+        'cover': 'assets/images/JP_cover.jpg',
+        'primary': Colors.green[500],
+        'secondary': Colors.green[200],
+      },
+      {
+        'title': 'Charlotte\'s Web',
+        'cover': 'assets/images/CW.png',
+        'primary': Colors.blue[500],
+        'secondary': Colors.blue[200],
+      },
+      {
+        'title': 'Diary Of A Wimpy Kid',
+        'cover': 'assets/images/DOAWP.png',
+        'primary': Colors.red[500],
+        'secondary': Colors.red[200],
+      }
+    ];
 
     Size size = MediaQuery.of(context).size;
     return Expanded(
@@ -61,14 +35,8 @@ class FavoriteBooks extends StatelessWidget {
         child: ListView.builder(
           scrollDirection: Axis.vertical,
           physics: BouncingScrollPhysics(),
-          itemCount: vBook.length,
+          itemCount: book.length,
           itemBuilder: (context, index) {
-            Book book = vBook[index];
-            String title = book.title;
-            var image = book.cover;
-            Color primary = book.primary;
-            Color secondary = book.secondary;
-
             return GestureDetector(
               onTap: () {
                 Navigator.pushNamed(context, '/BookInfo');
@@ -84,7 +52,7 @@ class FavoriteBooks extends StatelessWidget {
                 decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
-                      color: secondary,
+                      color: book[index]['secondary'],
                       offset: Offset(0, 5),
                       blurRadius: 5,
                       spreadRadius: 1,
@@ -92,7 +60,7 @@ class FavoriteBooks extends StatelessWidget {
                   ],
                   borderRadius: BorderRadius.circular(10),
                   gradient: LinearGradient(
-                    colors: [primary, secondary],
+                    colors: [book[index]['primary'], book[index]['secondary']],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
@@ -116,7 +84,7 @@ class FavoriteBooks extends StatelessWidget {
                                   padding: EdgeInsets.only(left: 10),
                                   child: Text(
                                     // '${titles[index]}',
-                                    title,
+                                    book[index]['title'],
                                     maxLines: 3,
                                     style: TextStyle(
                                       fontSize: 20,
@@ -203,7 +171,7 @@ class FavoriteBooks extends StatelessWidget {
                               ],
                               borderRadius: BorderRadius.circular(10.0),
                               image: DecorationImage(
-                                image: AssetImage(image),
+                                image: AssetImage(book[index]['cover']),
                                 fit: BoxFit.cover,
                               ),
                             ),

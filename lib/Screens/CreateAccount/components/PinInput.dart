@@ -12,6 +12,7 @@ class _PinInputState extends State<PinInput> {
   final _formKey = GlobalKey<FormState>();
   final _pinPutController = TextEditingController();
   final _pinPutFocusNode = FocusNode();
+  String pinNumber;
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +30,9 @@ class _PinInputState extends State<PinInput> {
             },
             useNativeKeyboard: false,
             //autovalidateMode: AutovalidateMode.onUserInteraction,
+            onSubmit: (String pin) {
+              pinNumber = pin;
+            },
             withCursor: true,
             fieldsCount: 4,
             obscureText: '●',
@@ -125,7 +129,9 @@ class _PinInputState extends State<PinInput> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) {
-                          return ConfirmPin();
+                          return ConfirmPin(
+                            pinNumber: pinNumber,
+                          );
                         }),
                       );
                     } else {

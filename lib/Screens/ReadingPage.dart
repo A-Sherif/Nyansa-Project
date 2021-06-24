@@ -5,13 +5,10 @@ class ReadingPage extends StatefulWidget {
   const ReadingPage({
     Key key,
     @required PageController controller,
-    @required bool visible,
   })  : _controller = controller,
-        _visible = visible,
         super(key: key);
 
   final PageController _controller;
-  final bool _visible;
 
   @override
   _ReadingPageState createState() => _ReadingPageState();
@@ -58,42 +55,21 @@ class _ReadingPageState extends State<ReadingPage> {
           top: size.height * 0.05,
           right: 40,
           child: Container(
-              width: size.width * 0.5,
-              padding: EdgeInsets.all(10.0),
-              decoration: BoxDecoration(
-                color: Colors.black26,
-                borderRadius: BorderRadius.circular(10),
+            width: size.width * 0.5,
+            padding: EdgeInsets.all(10.0),
+            decoration: BoxDecoration(
+              color: Colors.black26,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: SelectableText(
+              value,
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.white,
               ),
-              child: SelectableText(
-                value,
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.white,
-                ),
-                onTap: () {
-                  return Dialog(
-                    backgroundColor: Colors.white30,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Container(
-                      child: Column(children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text('Word',
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.white)),
-                            Icon(Icons.volume_up_rounded, color: Colors.white)
-                          ],
-                        )
-                      ]),
-                    ),
-                  );
-                },
-              )),
+              onTap: () {},
+            ),
+          ),
         ),
         Positioned(
           right: 20,

@@ -14,7 +14,8 @@ class SettingsScreen extends StatelessWidget {
         onWillPop: () async {
           Navigator.pushAndRemoveUntil(
               context,
-              MaterialPageRoute(builder: (context) => BottomTab()),
+              MaterialPageRoute(
+                  builder: (context) => BottomTab(initialPage: 3)),
               (route) => false);
           return false;
         },
@@ -31,10 +32,12 @@ class SettingsScreen extends StatelessWidget {
                         children: [
                           TextButton.icon(
                             onPressed: () {
-                              Navigator.popUntil(
-                                context,
-                                ModalRoute.withName('/Profile'),
-                              );
+                              Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          BottomTab(initialPage: 3)),
+                                  (route) => false);
                             },
                             icon: Icon(
                               Icons.arrow_back,

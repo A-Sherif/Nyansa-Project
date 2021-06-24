@@ -130,8 +130,8 @@ class _QuestionScreenState extends State<QuestionScreen> {
                                 ),
                               ),
                               Positioned(
-                                bottom: size.height * 0.2,
-                                left: size.width * 0.37,
+                                bottom: size.height * 0.25,
+                                left: size.width * 0.4,
                                 child: Container(
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(50),

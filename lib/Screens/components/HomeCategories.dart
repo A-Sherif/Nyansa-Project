@@ -98,9 +98,9 @@ class HomeCategories extends StatelessWidget {
                                       EdgeInsets.only(right: 10.0, bottom: 20),
                                   child: ElevatedButton(
                                     onPressed: () {
-                                      Navigator.pushNamed(context, '/Read');
+                                      Navigator.pushNamed(context, '/BookInfo');
                                     },
-                                    child: Text('Continue Reading'),
+                                    child: Text('Read'),
                                     style: ElevatedButton.styleFrom(
                                       primary: Colors.amber,
                                       onPrimary: Colors.white,

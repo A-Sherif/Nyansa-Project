@@ -1,0 +1,82 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+class ReadingScreen extends StatefulWidget {
+  @override
+  _ReadingScreenState createState() => _ReadingScreenState();
+}
+
+class _ReadingScreenState extends State<ReadingScreen> {
+  @override
+  void initState() {
+    super.initState();
+    SystemChrome.setPreferredOrientations(
+        [DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
+  }
+
+  dispose() {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.portraitUp,
+    ]);
+    super.dispose();
+  }
+
+  double topOne = 0;
+  double topTwo = 100;
+
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    return SafeArea(
+      child: Scaffold(
+        body: NotificationListener(
+          onNotification: (v) {
+            if (v is ScrollUpdateNotification) {
+              setState(() {
+                topOne = topOne - v.scrollDelta / 3;
+                topTwo = topTwo - v.scrollDelta / 1;
+              });
+            }
+          },
+          child: Stack(
+            children: [
+              Positioned(
+                top: topOne,
+                left: 0,
+                child: Container(
+                  height: size.height,
+                  width: size.width,
+                  child: Image.asset(
+                    'assets/images/JP_background.png',
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              Positioned(
+                top: topTwo,
+                left: 150,
+                child: Container(
+                  height: size.height,
+                  width: size.width,
+                  child: Image.asset(
+                    'assets/images/JP_bear.png',
+                    fit: BoxFit.contain,
+                  ),
+                ),
+              ),
+              ListView(
+                children: [
+                  Container(
+                    height: 600,
+                    color: Colors.transparent,
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

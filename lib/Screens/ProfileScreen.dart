@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 
 import 'components/ProfileButton.dart';
-
-import 'SettingsScreen.dart';
+import 'components/LogOutLock.dart';
 import 'ParentalLock.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
+  @override
+  _ProfileScreenState createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+
+  bool loading = false;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -23,7 +30,7 @@ class ProfileScreen extends StatelessWidget {
                       children: [
                         Container(
                           margin: EdgeInsets.only(
-                            bottom: 15,
+                            bottom: 20,
                           ),
                           padding: EdgeInsets.all(
                             10,
@@ -93,6 +100,19 @@ class ProfileScreen extends StatelessWidget {
                             left: 15,
                             right: 15,
                           ),
+                          padding: EdgeInsets.all(10.0),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10.0),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black12,
+                                offset: Offset(0, 10),
+                                spreadRadius: 1,
+                                blurRadius: 10,
+                              ),
+                            ],
+                          ),
                           child: ProfileButton(
                             label: 'Settings',
                             icon: Icon(
@@ -110,6 +130,33 @@ class ProfileScreen extends StatelessWidget {
                                 ),
                               );
                             },
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(left: 15, right: 15, top: 15),
+                          padding: EdgeInsets.all(10.0),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10.0),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black12,
+                                offset: Offset(0, 10),
+                                spreadRadius: 1,
+                                blurRadius: 10,
+                              ),
+                            ],
+                          ),
+                          child: ProfileButton(
+                            label: 'Help',
+                            icon: Icon(
+                              Icons.help_outline,
+                              size: 20,
+                              color: Colors.white,
+                            ),
+                            color: Colors.lightGreen[300],
+                            shadow: Colors.lightGreen[200],
+                            press: () {},
                           ),
                         ),
                       ],
@@ -133,12 +180,22 @@ class ProfileScreen extends StatelessWidget {
               ),
               margin: EdgeInsets.only(bottom: 50),
               padding: EdgeInsets.all(20),
-              child: Text(
-                'Log Out',
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white),
+              child: GestureDetector(
+                onTap: () async {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => LogOutLock(),
+                    ),
+                  );
+                },
+                child: Text(
+                  'Log Out',
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white),
+                ),
               ),
             ),
           ],

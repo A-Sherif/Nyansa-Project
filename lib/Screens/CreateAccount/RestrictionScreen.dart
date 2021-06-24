@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../components/Header.dart';
 import 'components/RestrictionItems.dart';
-import '../components/SearchBox.dart';
-
 import 'TimerScreen.dart';
 
 class RestrictionScreen extends StatelessWidget {
@@ -42,7 +40,6 @@ class RestrictionScreen extends StatelessWidget {
                 Header(
                   label: 'Add reading restriction',
                 ),
-                SearchBox(),
                 RestrictionItems(),
               ],
             ),

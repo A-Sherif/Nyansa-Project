@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../NavBar.dart';
+
 class SearchBar extends StatelessWidget {
   const SearchBar({
     Key key,
@@ -10,7 +12,14 @@ class SearchBar extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, '/Search');
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => BottomTab(
+              initialPage: 1,
+            ),
+          ),
+        );
       },
       child: Container(
         height: 50,

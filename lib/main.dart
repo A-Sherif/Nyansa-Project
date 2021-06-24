@@ -1,10 +1,13 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:nyansa/Models/userModel.dart';
+import 'package:nyansa/Services/auth.dart';
+import 'package:provider/provider.dart';
+import 'package:nyansa/Screens/wrapper.dart';
 
-import 'Screens/WelcomeScreen.dart';
 import 'Screens/CreateAccount/CreateScreen.dart';
 import 'Screens/LoginScreen.dart';
-import 'Screens/NavBar.dart';
 import 'Screens/HomePage.dart';
 import 'Screens/FavoritesScreen.dart';
 import 'Screens/SearchScreen.dart';
@@ -14,7 +17,11 @@ import 'Screens/ContentsScreen.dart';
 import 'Screens/ParentalLock.dart';
 import 'Screens/ReadScreen.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -33,28 +40,32 @@ class MyApp extends StatelessWidget {
         systemNavigationBarIconBrightness: Brightness.dark,
       ),
     );
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Nyansa App',
-      theme: ThemeData(
-        scaffoldBackgroundColor: Colors.grey[200],
-        primaryColor: Colors.cyan,
-        shadowColor: Colors.transparent,
+    return StreamProvider<Person>.value(
+      catchError: (context, error) => null,
+      value: AuthService().user,
+      initialData: Person(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Nyansa App',
+        theme: ThemeData(
+          scaffoldBackgroundColor: Colors.grey[200],
+          primaryColor: Colors.cyan,
+          shadowColor: Colors.transparent,
+        ),
+        home: Wrapper(),
+        routes: {
+          '/Login': (context) => LoginScreen(),
+          '/Create': (context) => CreateScreen(),
+          '/Home': (context) => HomeScreen(),
+          '/Favorites': (context) => FavoritesScreen(),
+          '/Search': (context) => SearchScreen(),
+          '/ParentalLock': (context) => ParentalLock(),
+          '/Profile': (context) => ProfileScreen(),
+          '/BookInfo': (context) => BookInfo(),
+          '/Contents': (context) => ContentsScreen(),
+          '/Read': (context) => ReadingScreensPage(),
+        },
       ),
-      home: WelcomeScreen(),
-      routes: {
-        '/Login': (context) => LoginScreen(),
-        '/Create': (context) => CreateScreen(),
-        '/NavBar': (context) => BottomTab(),
-        '/Home': (context) => HomeScreen(),
-        '/Favorites': (context) => FavoritesScreen(),
-        '/Search': (context) => SearchScreen(),
-        '/ParentalLock': (context) => ParentalLock(),
-        '/Profile': (context) => ProfileScreen(),
-        '/BookInfo': (context) => BookInfo(),
-        '/Contents': (context) => ContentsScreen(),
-        '/Read': (context) => ReadingScreen(),
-      },
     );
   }
 }

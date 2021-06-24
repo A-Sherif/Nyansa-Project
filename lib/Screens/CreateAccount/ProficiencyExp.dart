@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../components/Header.dart';
-import 'components/DropDown.dart';
 
 class ProficiencyExplanation extends StatelessWidget {
   @override
@@ -72,20 +71,44 @@ class ProficiencyExplanation extends StatelessWidget {
                               fontWeight: FontWeight.w600,
                             ),
                           ),
-                          DropDown(
-                            label: 'Beginner',
-                            subtext:
-                                'Blandit mauris, leo venenatis tempus. Etiam sit turpis ultricies posuere non gravida ut egestas. Nibh lacus interdum vitae lorem vitae purus nunc fames potenti. Volutpat egestas felis, ac nec rhoncus. Mi, metus urna magna tincidunt praesent cras eu lectus ut. Nulla sem viverra sed sit fermentum morbi sed. ',
+                          Padding(
+                            padding: EdgeInsets.symmetric(vertical: 10.0),
+                            child: Text(
+                              'Beginner',
+                              style: TextStyle(
+                                fontSize: 24.0,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
                           ),
-                          DropDown(
-                            label: 'Intermediate',
-                            subtext:
-                                'Blandit mauris, leo venenatis tempus. Etiam sit turpis ultricies posuere non gravida ut egestas. Nibh lacus interdum vitae lorem vitae purus nunc fames potenti. Volutpat egestas felis, ac nec rhoncus. Mi, metus urna magna tincidunt praesent cras eu lectus ut. Nulla sem viverra sed sit fermentum morbi sed. ',
+                          Text(
+                            'Recommended for children between the ages of 4-5 or children now learning to read \nWhen selected only books teaching how to read would be shown. \nChildren would be able to learn the alphabets, numbers, two and three letter words and correct pronunciation ',
                           ),
-                          DropDown(
-                            label: 'Advanced',
-                            subtext:
-                                'Blandit mauris, leo venenatis tempus. Etiam sit turpis ultricies posuere non gravida ut egestas. Nibh lacus interdum vitae lorem vitae purus nunc fames potenti. Volutpat egestas felis, ac nec rhoncus. Mi, metus urna magna tincidunt praesent cras eu lectus ut. Nulla sem viverra sed sit fermentum morbi sed. ',
+                          Padding(
+                            padding: EdgeInsets.symmetric(vertical: 10.0),
+                            child: Text(
+                              'Intermediate',
+                              style: TextStyle(
+                                fontSize: 24.0,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            'Recommended for children between the ages of 6-8 or children with average reading skills \nChildren would be introduced to story books which have simple words and are easy to understand. \nChildren would be able to learn more advanced words and would be able to develop a strong grammatical foundation',
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(vertical: 10.0),
+                            child: Text(
+                              'Advanced',
+                              style: TextStyle(
+                                fontSize: 24.0,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            'Recommended for children between the ages of 9-12 or children proficient in reading. \nChildren would be introduced to normal story books with easy to understand words. \nChildren would be able to learn new vocabulary as well as improve on their grammatical foundation',
                           ),
                         ],
                       ),
