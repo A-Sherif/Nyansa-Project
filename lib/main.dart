@@ -40,10 +40,16 @@ class MyApp extends StatelessWidget {
         systemNavigationBarIconBrightness: Brightness.dark,
       ),
     );
-    return StreamProvider<Person>.value(
-      catchError: (context, error) => null,
-      value: AuthService().user,
-      initialData: Person(),
+    return MultiProvider(
+      providers: [
+        StreamProvider<Person>.value(
+          value: AuthService().user,
+          initialData: Person(),
+          catchError: (context, error) {
+            return null;
+          },
+        ),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Nyansa App',
