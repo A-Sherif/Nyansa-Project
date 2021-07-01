@@ -1,16 +1,23 @@
 class Person {
   final String uid;
+
+  Person({
+    this.uid,
+  });
+}
+
+class UserData {
+  final String uid;
   final String email;
   final String password;
   final String name;
   final int age;
   final String pin;
   final int readingTime;
-  final List restrictions;
+  // final List restrictions;
   final String proficiency;
-  final List favorites;
 
-  Person({
+  UserData({
     this.uid,
     this.email,
     this.password,
@@ -19,7 +26,5 @@ class Person {
     this.age,
     this.readingTime,
     this.proficiency,
-    this.restrictions,
-    this.favorites,
   });
 }

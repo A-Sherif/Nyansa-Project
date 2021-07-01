@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:nyansa/Services/database.dart';
 import '../Models/userModel.dart';
 
 class AuthService {
@@ -26,6 +27,18 @@ class AuthService {
       );
       User user = result.user;
 
+//Create new docuument for user
+      await DatabaseService(
+        uid: user.uid,
+      ).updateUserData(
+        'nyansa@nyansa.com',
+        'nyansa1234',
+        'Nyansa',
+        4,
+        'beginner',
+        40,
+        '1234',
+      );
       return _user(user);
     } catch (e) {
       print(e.toString());

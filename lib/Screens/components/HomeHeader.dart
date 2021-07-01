@@ -30,7 +30,7 @@ class HomeHeader extends StatelessWidget {
                 ),
               ),
               Text(
-                'Nyansa',
+                'Nyansa', // user.name,
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w400,
@@ -38,12 +38,6 @@ class HomeHeader extends StatelessWidget {
               ),
             ],
           ),
-          // Image.asset(
-          //   'assets/images/Logo.png',
-          //   width: size.width * 0.1,
-          //   height: size.height * 0.1,
-          //   alignment: Alignment.centerRight,
-          // ),
         ],
       ),
     );

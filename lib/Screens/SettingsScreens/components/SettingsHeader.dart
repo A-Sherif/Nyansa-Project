@@ -4,9 +4,11 @@ class SettingsHeader extends StatelessWidget {
   const SettingsHeader({
     Key key,
     this.label,
+    this.onPressed,
   }) : super(key: key);
 
   final String label;
+  final Function onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -34,15 +36,16 @@ class SettingsHeader extends StatelessWidget {
               ),
               Container(
                 child: ElevatedButton(
-                    onPressed: () {},
-                    child: Text('Done'),
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.cyan[200],
-                      onPrimary: Colors.cyan[800],
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                    )),
+                  onPressed: onPressed,
+                  child: Text('Done'),
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.cyan[200],
+                    onPrimary: Colors.cyan[800],
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                  ),
+                ),
               ),
             ],
           ),
